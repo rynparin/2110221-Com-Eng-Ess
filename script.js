@@ -1,3 +1,5 @@
+'use strict';
+
 function openForm() {
 	document.getElementById('myForm').style.visibility = 'visible';
 	console.log('click');

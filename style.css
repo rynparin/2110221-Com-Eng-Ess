@@ -82,11 +82,7 @@ nav {
 
 .login__btn:hover,
 .login__btn:focus,
-.btn--sort:hover,
-.btn--sort:focus {
-	outline: none;
-	color: #777;
-}
+
 
 /* welcome */
 .welcome {
@@ -196,15 +192,18 @@ nav {
 	align-items: center;
 	flex-direction: column;
 	width: 40%;
-	height: 50%;
+	height: 55%;
 	background-color: #ceedce;
 	border-radius: 15px;
 	margin: auto;
+	padding-top: 1.5rem;
+	padding-bottom: 1.5rem;
 }
 
 .question {
 	display: flex;
 	justify-content: flex-start;
+	flex-direction: column;
 	align-items: center;
 	background-color: #ffffff;
 	padding: 1rem;
@@ -213,6 +212,7 @@ nav {
 	border-style: solid;
 	border-color: #a9dbd1;
 	border-radius: 10px;
+	overflow: scroll;
 }
 
 .question h3 {
@@ -262,12 +262,13 @@ nav {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	padding: 1rem;
+	padding: 2rem;
 	margin: 1rem;
 	width: 100%;
 	border-style: solid;
 	border-color: #fae1ba;
 	border-radius: 10px;
+	overflow: auto;
 }
 
 .like__btn {
@@ -281,11 +282,21 @@ nav {
 	align-items: center;
 	justify-content: space-between;
 	width: 20%;
+	min-width: fit-content;
 	background-color: #9bf653;
 	border: none;
 	border-radius: 10px;
 	padding-left: 1rem;
 	padding-right: 1rem;
+
+	cursor: pointer;
+	transition: all 0.3s;
+}
+
+.like__btn:hover {
+	background-color: #a9dbd1;
+	position: relative;
+	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
 }
 
 .like__img {
@@ -295,7 +306,7 @@ nav {
 	margin-bottom: 0.5rem;
 }
 
-.comment__add {
+.add__comment {
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
@@ -308,7 +319,7 @@ nav {
 	border-radius: 10px;
 }
 
-.user__comment {
+.add__comment__input {
 	width: 100%;
 	font-size: 15px;
 	color: #545454;
@@ -318,7 +329,7 @@ nav {
 	padding-top: 1rem;
 }
 
-.user__submit {
+.add__submit {
 	display: flex;
 	justify-content: flex-end;
 	margin-top: 1rem;
@@ -327,7 +338,7 @@ nav {
 	-moz-transition: ease-out 0.5s;
 }
 
-.user__submit__button {
+.add__submit__btn {
 	font-family: 'Inter';
 	font-style: normal;
 	font-weight: 700;
@@ -340,11 +351,13 @@ nav {
 	width: 10rem;
 	height: 3rem;
 
+	cursor: pointer;
 	transition: all 0.25s ease-out;
 }
 
-.user__submit__button:hover {
+.add__submit__btn:hover {
 	position: relative;
+	background-color: #fdd69c;
 	top: -3px;
 	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
 }

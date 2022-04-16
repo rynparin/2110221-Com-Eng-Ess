@@ -198,15 +198,7 @@ nav {
   margin-top: 5rem;
   padding-left: 26rem;
   color: #2e2b2b;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-  /* text-align: center; */
-  /* margin: 5px;
-  width: 196px;
-  height: 100px;
-  background-color: #ceedce;
-  border-radius: 15px; */
+
 }
 
 .AllofQuestions {
@@ -228,20 +220,6 @@ nav {
   padding-bottom: 4rem;
 }
 
-/* .parent {
-  display: grid; */
-/* border: 1px solid black;
-margin: 1rem;*/
-/* grid-template-columns: 100px 100px;
-  grid-template-rows: 100px;
-  grid-column-gap: 5px;
-} */
-
-/* .question {
-	display: flex;
-    flex-direction: column;
-} */
-
 .child {
   display: inline-block;
   min-width: fit-content;
@@ -249,7 +227,6 @@ margin: 1rem;*/
 }
 
 .number {
-  /* display: inline-block; */
   z-index: 1;
   position: relative;
   border-radius: 50%;
@@ -257,7 +234,6 @@ margin: 1rem;*/
   height: 55px;
   padding: 12px;
   background: #a09acd;
-  /* border: 0px solid rgb(225, 115, 235); */
   color: rgb(249, 245, 250);
   text-align: center;
   font-style: normal;
@@ -268,9 +244,7 @@ margin: 1rem;*/
 }
 
 .message {
-  /* z-index: initial; */
   vertical-align: middle;
-  /* display: inline-block; */
   font-family: "Inter";
   font-style: normal;
   font-weight: normal;
@@ -311,7 +285,6 @@ margin: 1rem;*/
   min-width: fit-content;
   background-color: #c98b3a;
   color: rgb(249, 245, 250);
-  /* border: 0px solid rgb(225, 115, 235);  */
   border-radius: 10px;
   padding: 7px;
   padding-left: 1rem;

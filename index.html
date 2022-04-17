@@ -1,71 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <link rel="stylesheet" href="style.css" />
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE==edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Leafee</title>
-  </head>
-  <body>
-    <!-- TOP NAVIGATION -->
-    <nav>
-      <div class="webnamecontainer">
-        <img src="logo.png" alt="Logo" class="logo" />
-        <p class="webname">STUDYTOGETHER</p>
-      </div>
-      <form class="login">
-        <input
-          type="text"
-          placeholder="Firstname"
-          class="login__input login__input--name"
-        />
-        <input
-          type="text"
-          placeholder="Surname"
-          class="login__input login__input--surname"
-        />
-        <input
-          type="number"
-          placeholder="ID"
-          maxlength="10"
-          class="login__input login__input--id"
-        />
-        <button class="login__btn">&rarr;</button>
-      </form>
-    </nav>
-    <!-- Welcome message -->
-    <div class="welcome">
-      <h1>Please login before asking question !!!</h1>
-    </div>
-    <!-- Quote -->
-    <div class="header">
-      <div class="quote">
-        <h1>
-          Part of being succesful is about <br />asking questions and
-          <br />listening to the answer.
-        </h1>
-        <h3 class="quote__author">Anne Burrel</h3>
-      </div>
-      <img src="girl.png" alt="girl" class="girl" />
-    </div>
-    <!-- Categories -->
-    <div class="category">
-      <h1 class="category__title">CATEGORIES</h1>
-      <div class="category__subjects">
-        <div class="category__subject">FOREIGN<br />LANGUAGES</div>
-        <div class="category__subject">MATH</div>
-        <div class="category__subject">ART</div>
-        <div class="category__subject">SCIENCE</div>
-        <div class="category__subject">HISTORY</div>
-        <div class="category__subject">SOCIAL <br />STUDIES</div>
-        <div class="category__subject">GEOGRAPHY</div>
-        <div class="category__subject">P.E.</div>
-        <div class="category__subject">TECHONOLOGY</div>
-        <div class="category__subject">OTHERS</div>
-      </div>
-    </div>
-    <div class="Question_in_category">
+	<head>
+		<link rel="stylesheet" href="style.css" />
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Leafee</title>
+	</head>
+	<body>
+		<!-- TOP NAVIGATION -->
+		<nav>
+			<div class="webnamecontainer">
+				<img src="logo.png" alt="Logo" class="logo" />
+				<p class="webname">STUDYTOGETHER</p>
+			</div>
+			<form class="login">
+				<input
+					type="text"
+					placeholder="Firstname"
+					class="login__input login__input--name"
+				/>
+				<input
+					type="text"
+					placeholder="Surname"
+					class="login__input login__input--surname"
+				/>
+				<input
+					type="number"
+					placeholder="ID"
+					maxlength="10"
+					class="login__input login__input--id"
+				/>
+				<button class="login__btn">&rarr;</button>
+			</form>
+		</nav>
+		<!-- Welcome message -->
+		<div class="welcome">
+			<h1>Please login before asking question !!!</h1>
+		</div>
+		<!-- Quote -->
+		<div class="header">
+			<div class="quote">
+				<h1>
+					Part of being succesful is about <br />asking questions and
+					<br />listening to the answer.
+				</h1>
+				<h3 class="quote__author">Anne Burrel</h3>
+			</div>
+			<img src="girl.png" alt="girl" class="girl" />
+		</div>
+		<!-- Categories -->
+		<div class="category">
+			<h1 class="category__title">CATEGORIES</h1>
+			<div class="category__subjects">
+				<div class="category__subject">FOREIGN<br />LANGUAGES</div>
+				<div class="category__subject">MATH</div>
+				<div class="category__subject">ART</div>
+				<div class="category__subject">SCIENCE</div>
+				<div class="category__subject">HISTORY</div>
+				<div class="category__subject">SOCIAL <br />STUDIES</div>
+				<div class="category__subject">GEOGRAPHY</div>
+				<div class="category__subject">P.E.</div>
+				<div class="category__subject">TECHONOLOGY</div>
+				<div class="category__subject">OTHERS</div>
+			</div>
+		</div>
+
+
+		<!-- ASK QUESTION? -->
+		<div class="group2">
+		<img src="boy.png" alt="boy" class="boy" />
+		<div class = "question-area">
+	    <h2> ASK QUESTION? </h2>
+	    <textarea name="" id="txt" cols="80" rows="10" placeholder=" TYPE SOMETHING..."></textarea>
+	        <select name="question-type" id="types">
+					<option value="CHOOSE CATEGORY">CHOOSE CATEGORY</option>
+				    <option value="FOREIGN LANGUAGES">FOREIGN LANGUAGES</option>
+				    <option value="MATH">MATH</option>
+				    <option value="ART">ART</option>
+				    <option value="SCIENCE">SCIENCE</option>
+				    <option value="HISTORY">HISTORY</option>
+				    <option value="SOCIAL STUDIES">SOCIAL STUDIES</option>
+				    <option value="GEOGRAPHY">GEOGRAPHY</option>
+				    <option value="P.E.">P.E.</option>
+				    <option value="TECHNOLOGY">TECHNOLOGY</option>
+				    <option value="OTHERS">OTHERS</option>
+	  	</select>
+	    <button>POST</button>
+	</div>
+	    
+	</div>
+    
+    <!-- Question in category -->
+    
+        <div class="Question_in_category">
       <div class="FOREIGN_LANGUAGES">FOREIGN LANGUAGES</div>
       <div class="AllofQuestions">
         <div class="question">
@@ -163,6 +191,105 @@
         </div>
       </div>
     </div>
-    <script type="module" src="script.js"></script>
-  </body>
+    
+		<!-- popup -->
+		<div class="popup" id="myForm">
+			<div class="pupup__background">
+				<div class="popup__close-bar">
+					<button class="popup__close-button" type="button">
+						&times
+					</button>
+				</div>
+				<div class="question">
+					<h3>QUESTION: Is that normal that we can't center DIV?</h3>
+				</div>
+				<div class="comment">
+					<div class="comment__answers">
+						<div class="ans">
+							<h3>1</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						
+						</div>
+						<div class="ans">
+							<h3>2</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100000</button>
+						</div>
+						<div class="ans">
+							<h3>3</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>10000000</button>
+						</div>
+						<div class="ans">
+							<h3>4</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+						<div class="ans">
+							<h3>5</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+						<div class="ans">
+							<h3>6</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+						<div class="ans">
+							<h3>7</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+						<div class="ans">
+							<h3>8</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+						<div class="ans">
+							<h3>9</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+						<div class="ans">
+							<h3>10</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+						<div class="ans">
+							<h3>11</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+						<div class="ans">
+							<h3>12</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+						<div class="ans">
+							<h3>13</h3>
+							<button class="like__btn">
+								<img src="like.png" alt="like" class="like__img"/>100</button>
+						</div>
+					</div>
+					<form class="add__comment">
+						<input
+							type="text"
+							placeholder="ADD COMMENT..."
+							class="add__comment__input"
+						/>
+						<div class="add__submit">
+						<button type="submit" class="add__submit__btn">
+							ADD
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+
+		<!-- test popup button -->
+		<button class="open-button" type="button">Open Form</button>
+		<script type="module" src="script.js"></script>
+	</body>
 </html>

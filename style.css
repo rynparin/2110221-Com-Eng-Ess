@@ -187,6 +187,71 @@ nav {
 	border-radius: 15px;
 }
 
+.boy {
+	width: 20rem;
+}
+
+.question-area {
+	font-family: 'Inter';
+	font-style: normal;
+    display:inline-block;
+    position:relative;
+    background-color: #A09ACD;
+	  border-radius: 10px;
+    margin-top: 3rem;
+	  margin-bottom: 5rem;
+    padding: 2rem;
+}
+
+.question-area button{
+ position:absolute;
+ bottom:40px;
+ right:40px;
+ border-radius: 4px;
+ background-color: #FFE7C3;
+ color: #FF8956;
+ font-size: 16px;
+ font-weight: bold;
+ height: 24px;
+}
+
+.question-area select{
+ position:absolute;
+ bottom:40px;
+ right:106px;
+}
+
+.question-area textarea {
+    resize: none;
+    border-radius: 10px;
+    font-size: 16px;
+}
+
+.question-area h2 {
+	color: #FFFFFF;
+	font-size: 24px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
+
+#types {
+	border-radius: 5px;
+	background-color: #FFE7C3;
+	color: #777777;
+	font-weight: bold;
+  	font-size: 16px;
+  	height: 24px;
+}
+.group2 {
+	margin-top: 3rem;
+	margin-bottom: 5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem;
+	background-color: #f5f5f5;
+}
+
 /* quesntion popup */
 .popup {
 	display: flex;

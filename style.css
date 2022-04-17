@@ -1,87 +1,86 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+	box-sizing: inherit;
 }
 
 html {
-  font-size: 62.5%;
-  box-sizing: border-box;
+	font-size: 62.5%;
+	box-sizing: border-box;
 }
 
 body {
-  font-family: "Inter";
-  font-style: italic;
-  color: #444;
-  /* background-color: #ceedce; */
-  background-color: #f5f5f5;
-  height: 100vh;
+	font-family: 'Inter';
+	font-style: italic;
+	color: #444;
+	/* background-color: #ceedce; */
+	background-color: #f5f5f5;
+	height: 100vh;
 }
 
 /* navbar */
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  background-color: rgb(197, 175, 241);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	background-color: rgb(197, 175, 241);
 }
 
 .webnamecontainer {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .webname {
-  font-size: 1.5rem;
-  font-weight: 100;
-  color: white;
-  margin-left: 1rem;
+	font-size: 1.5rem;
+	font-weight: 100;
+	color: white;
+	margin-left: 1rem;
 }
 
 .logo {
-  height: 3.25rem;
+	height: 3.25rem;
 }
 
 .login {
-  display: flex;
+	display: flex;
 }
 
 .login__input {
-  border: none;
-  padding: 0.5rem 2rem;
-  font-size: 1.5rem;
-  font-family: inherit;
-  text-align: center;
-  width: 12rem;
-  border-radius: 10rem;
-  margin-right: 1rem;
-  color: inherit;
-  border: 1px solid #fff;
-  transition: all 0.3s;
+	border: none;
+	padding: 0.5rem 2rem;
+	font-size: 1.5rem;
+	font-family: inherit;
+	text-align: center;
+	width: 12rem;
+	border-radius: 10rem;
+	margin-right: 1rem;
+	color: inherit;
+	border: 1px solid #fff;
+	transition: all 0.3s;
 }
 
 .login__input:focus {
-  outline: none;
-  border: 1px solid #ccc;
+	outline: none;
+	border: 1px solid #ccc;
 }
 
 .login__input::placeholder {
-  color: #bbb;
+	color: #bbb;
 }
 
 .login__btn {
-  border: none;
-  background: none;
-  font-size: 2.2rem;
-  color: inherit;
-  cursor: pointer;
-  transition: all 0.3s;
-  margin-right: 1rem;
+	border: none;
+	background: none;
+	font-size: 2.2rem;
+	color: inherit;
+	cursor: pointer;
+	transition: all 0.3s;
+	margin-right: 1rem;
 }
 
 .login__btn:hover,
-
 .login__btn:focus {
 	outline: none;
 	color: #777;
@@ -89,244 +88,240 @@ nav {
 
 /* welcome */
 .welcome {
-  display: flex;
-  justify-content: center;
-  margin-top: 5rem;
-  background-color: #f5f5f5;
-  color: #ff8956;
+	display: flex;
+	justify-content: center;
+	margin-top: 5rem;
+	background-color: #f5f5f5;
+	color: #ff8956;
 }
 
 /* header */
 
 .header {
-  margin-top: 3rem;
-  margin-bottom: 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5rem;
-  background-color: #f5f5f5;
+	margin-top: 3rem;
+	margin-bottom: 5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0.5rem;
+	background-color: #f5f5f5;
 }
 
 .quote {
-  font-weight: 400;
-  font-size: 15px;
-  line-height: 40px;
-  display: flex;
-  padding-top: 1.5rem;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
-  width: fit-content;
-  height: fit-content;
-  border-style: solid;
-  flex-direction: column;
-  border-radius: 10px;
-  border-color: #a09acd;
+	font-weight: 400;
+	font-size: 15px;
+	line-height: 40px;
+	display: flex;
+	padding-top: 1.5rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+	width: fit-content;
+	height: fit-content;
+	border-style: solid;
+	flex-direction: column;
+	border-radius: 10px;
+	border-color: #a09acd;
 }
 .quote__author {
-  font-size: 1.5rem;
-  font-weight: 100;
-  color: #a09acd;
-  margin-left: auto;
-  margin-right: 1rem;
+	font-size: 1.5rem;
+	font-weight: 100;
+	color: #a09acd;
+	margin-left: auto;
+	margin-right: 1rem;
 }
 
 .girl {
-  width: 30rem;
+	width: 30rem;
 }
 
 /* category */
 
 .category {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 .category__title {
-  text-align: center;
-  font-style: normal;
-  margin-bottom: 1.5rem;
-  padding: 3rem;
-  font-size: 3rem;
-  width: 64%;
-  background-color: #ceedce;
-  border-radius: 15px;
+	text-align: center;
+	font-style: normal;
+	margin-bottom: 1.5rem;
+	padding: 3rem;
+	font-size: 3rem;
+	width: 64%;
+	background-color: #ceedce;
+	border-radius: 15px;
 }
 
 .category__subjects {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  overflow: auto;
-  margin: 4px;
-  font-size: 2rem;
-  width: 65%;
-  /* background-color: #ceedce;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+	overflow: auto;
+	margin: 4px;
+	font-size: 2rem;
+	width: 65%;
+	/* background-color: #ceedce;
 	border-radius: 10px;
 	border-bottom: 1px solid #ccc; */
 }
 
 .category__subject {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  line-height: 30px;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: 300;
+	font-size: 20px;
+	line-height: 30px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 5px;
-  width: 196px;
-  height: 100px;
-  background-color: #ceedce;
-  border-radius: 15px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin: 5px;
+	width: 196px;
+	height: 100px;
+	background-color: #ceedce;
+	border-radius: 15px;
 }
 
 .FOREIGN_LANGUAGES {
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: bold;
-  font-size: 2.6rem;
-  color: #2e2b2b;
-  line-height: 30px;
-  margin-top: 5rem;
-  margin-bottom: 0.5rem;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: bold;
+	font-size: 2.6rem;
+	color: #2e2b2b;
+	line-height: 30px;
+	margin-top: 5rem;
+	margin-bottom: 0.5rem;
 
-  text-align: center;
-  justify-content: center;
+	text-align: center;
+	justify-content: center;
 }
 
 .AllofQuestions {
-  font-style: normal;
-  font-weight: 300;
-  font-size: 20px;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  border: 4px solid #a09acd;
-  border-radius: 15px;
-  width: 700px;
-  /* min-width: fit-content; */
-  height: 500px;
-  /* min-height: fit-content; */
+	font-style: normal;
+	font-weight: 300;
+	font-size: 20px;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	border: 4px solid #a09acd;
+	border-radius: 15px;
+	width: 700px;
+	/* min-width: fit-content; */
+	height: 500px;
+	/* min-height: fit-content; */
 
-  margin: auto;
-  padding-top: 3rem;
-  padding-bottom: 2rem;
+	margin: auto;
+	padding-top: 3rem;
+	padding-bottom: 2rem;
 
-  padding-left: 2rem;
-  padding-right: 1rem;
+	padding-left: 2rem;
+	padding-right: 1rem;
 
-  margin-bottom: 2rem;
-  margin-top: 0.5rem;
-  text-align: center;
+	margin-bottom: 2rem;
+	margin-top: 0.5rem;
+	text-align: center;
 
-  overflow-x: auto;
-  overflow-y: auto;
-  white-space: nowrap;
+	overflow-x: auto;
+	overflow-y: auto;
+	white-space: nowrap;
 }
 
-div.question {
-  width: 500px;
-  height: 500px;
-  margin: auto;
-  min-width: fit-content;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+div.question01 {
+	width: 500px;
+	height: 500px;
+	margin: auto;
+	min-width: fit-content;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 
-  text-align: justify;
+	text-align: justify;
 }
 
 .parent {
-  min-width: fit-content;
-  min-height: fit-content;
+	min-width: fit-content;
+	min-height: fit-content;
 }
 
 .child {
-  display: inline-block;
-  min-width: fit-content;
-  min-height: fit-content;
+	display: inline-block;
+	min-width: fit-content;
+	min-height: fit-content;
 }
 
 .number {
-  z-index: 1;
-  position: relative;
-  border-radius: 50%;
-  width: 55px;
-  height: 55px;
-  padding: 12px;
-  background: #a09acd;
-  color: rgb(249, 245, 250);
-  text-align: center;
-  font-style: normal;
-  font-weight: bold;
-  font-size: 27px;
-  min-width: fit-content;
-  min-height: fit-content;
-  margin-top: 2rem;
-
-  
+	z-index: 1;
+	position: relative;
+	border-radius: 50%;
+	width: 55px;
+	height: 55px;
+	padding: 12px;
+	background: #a09acd;
+	color: rgb(249, 245, 250);
+	text-align: center;
+	font-style: normal;
+	font-weight: bold;
+	font-size: 27px;
+	min-width: fit-content;
+	min-height: fit-content;
+	margin-top: 2rem;
 }
 
 .message {
-  vertical-align: middle;
-  font-family: "Inter";
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 30px;
+	vertical-align: middle;
+	font-family: 'Inter';
+	font-style: normal;
+	font-weight: normal;
+	font-size: 20px;
+	line-height: 30px;
 
-  margin-top: 2rem;
-  margin-right: 10px;
-  margin-left: -28px;
-  text-align: center;
+	margin-top: 2rem;
+	margin-right: 10px;
+	margin-left: -28px;
+	text-align: center;
 
-  border: 4px solid #a9dbd1;
-  border-radius: 10px;
-  width: 100%;
-  height: 20%;
-  min-width: fit-content;
-  min-height: fit-content;
+	border: 4px solid #a9dbd1;
+	border-radius: 10px;
+	width: 100%;
+	height: 20%;
+	min-width: fit-content;
+	min-height: fit-content;
 
-  padding-left: 3rem;
-  padding-right: 2rem;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
-
+	padding-left: 3rem;
+	padding-right: 2rem;
+	padding-top: 0.5rem;
+	padding-bottom: 0.5rem;
 }
 
 .num_comment {
-  z-index: 1;
-  float: left;
-  font-family: "Inter";
-  font-style: normal;
-  color: rgb(249, 245, 250);
-  font-weight: 300;
-  font-size: 14px;
-  line-height: 10px;
-  text-align: center;
+	z-index: 1;
+	float: left;
+	font-family: 'Inter';
+	font-style: normal;
+	color: rgb(249, 245, 250);
+	font-weight: 300;
+	font-size: 14px;
+	line-height: 10px;
+	text-align: center;
 
-  display: flex;
-  align-items: left;
-  width: 50px;
-  height: 25px;
-  min-width: fit-content;
+	display: flex;
+	align-items: left;
+	width: 50px;
+	height: 25px;
+	min-width: fit-content;
 
-  background-color: #c98b3a;
-  border-radius: 10px;
+	background-color: #c98b3a;
+	border-radius: 10px;
 
-  padding: 7px;
-  padding-left: 1rem;
-  padding-right: 1rem;
+	padding: 7px;
+	padding-left: 1rem;
+	padding-right: 1rem;
 
-  margin-top: 0.1rem;
-
+	margin-top: 0.1rem;
 }
 
 .boy {
@@ -336,41 +331,41 @@ div.question {
 .question-area {
 	font-family: 'Inter';
 	font-style: normal;
-    display:inline-block;
-    position:relative;
-    background-color: #A09ACD;
-	  border-radius: 10px;
-    margin-top: 3rem;
-	  margin-bottom: 5rem;
-    padding: 2rem;
+	display: inline-block;
+	position: relative;
+	background-color: #a09acd;
+	border-radius: 10px;
+	margin-top: 3rem;
+	margin-bottom: 5rem;
+	padding: 2rem;
 }
 
-.question-area button{
- position:absolute;
- bottom:40px;
- right:40px;
- border-radius: 4px;
- background-color: #FFE7C3;
- color: #FF8956;
- font-size: 16px;
- font-weight: bold;
- height: 24px;
+.question-area button {
+	position: absolute;
+	bottom: 40px;
+	right: 40px;
+	border-radius: 4px;
+	background-color: #ffe7c3;
+	color: #ff8956;
+	font-size: 16px;
+	font-weight: bold;
+	height: 24px;
 }
 
-.question-area select{
- position:absolute;
- bottom:40px;
- right:106px;
+.question-area select {
+	position: absolute;
+	bottom: 40px;
+	right: 106px;
 }
 
 .question-area textarea {
-    resize: none;
-    border-radius: 10px;
-    font-size: 16px;
+	resize: none;
+	border-radius: 10px;
+	font-size: 16px;
 }
 
 .question-area h2 {
-	color: #FFFFFF;
+	color: #ffffff;
 	font-size: 24px;
 	margin-left: 10px;
 	margin-bottom: 10px;
@@ -378,11 +373,11 @@ div.question {
 
 #types {
 	border-radius: 5px;
-	background-color: #FFE7C3;
+	background-color: #ffe7c3;
 	color: #777777;
 	font-weight: bold;
-  	font-size: 16px;
-  	height: 24px;
+	font-size: 16px;
+	height: 24px;
 }
 .group2 {
 	margin-top: 3rem;

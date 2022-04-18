@@ -169,6 +169,12 @@ nav {
 	border-bottom: 1px solid #ccc; */
 }
 
+.app {
+	/* NOTE This creates the fade in/out anumation */
+	opacity: 0;
+	transition: all 1s;
+}
+
 .category__subject {
 	font-family: 'Inter';
 	font-style: normal;

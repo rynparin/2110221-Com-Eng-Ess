@@ -12,7 +12,7 @@ const firebaseConfig = {
 	projectId: 'testfirebase-b134a',
 	storageBucket: 'testfirebase-b134a.appspot.com',
 	messagingSenderId: '183798996478',
-	appId: '1:183798996478:web:a53300a98820849ce134af',
+	appId: '1:183798996478:web:f994edb5885dcbc7e134af',
 };
 
 // Initialize Firebase
@@ -28,7 +28,7 @@ import {
 	getDocs,
 	getFirestore,
 	updateDoc,
-} from 'https://www.gstatic.com/firebasejs/9.6.8/firebase-firestore.js';
+} from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js';
 
 const db = getFirestore();
 const commentsRef = collection(db, 'comments');

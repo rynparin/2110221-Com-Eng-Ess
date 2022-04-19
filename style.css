@@ -189,8 +189,9 @@ nav {
 
 .app {
 	/* NOTE This creates the fade in/out anumation */
-	opacity: 0;
+	opacity: 100;
 	transition: all 1s;
+	pointer-events: auto;
 }
 
 /* question */
@@ -206,6 +207,7 @@ nav {
 
 	text-align: center;
 	justify-content: center;
+
 }
 
 .AllofQuestions {
@@ -236,10 +238,12 @@ nav {
 	overflow-x: auto;
 	overflow-y: auto;
 	white-space: nowrap;
+
 }
-.AllofQuestions::-webkit-scrollbar {
+
+/* .AllofQuestions::-webkit-scrollbar {
 	display: none;
-}
+} */
 
 div.inquiring {
 	width: 500px;
@@ -261,10 +265,11 @@ div.inquiring {
 	display: inline-block;
 	min-width: fit-content;
 	min-height: fit-content;
+
 }
 
 .number {
-	z-index: 1;
+	/* z-index: 100; */
 	position: relative;
 	border-radius: 50%;
 	width: 55px;
@@ -279,6 +284,16 @@ div.inquiring {
 	min-width: fit-content;
 	min-height: fit-content;
 	margin-top: 2rem;
+	
+	cursor: pointer;
+	pointer-events: auto;
+	transition: all 0.3s;
+}
+
+.number:hover {
+	position: relative;
+	top: -2px;
+	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
 }
 
 .message {
@@ -637,8 +652,9 @@ div.inquiring {
 	padding: 16px 20px;
 	border: none;
 	cursor: pointer;
-	opacity: 0.8;
+	opacity: 0;
 	bottom: 23px;
 	right: 28px;
 	width: 280px;
+	
 }

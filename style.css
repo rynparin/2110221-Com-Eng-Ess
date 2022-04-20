@@ -296,11 +296,6 @@ div.inquiring {
 	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
 } */
 
-.message button:hover {
-	position: relative;
-	top: -2px;
-	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
-}
 
 .message {
 	vertical-align: middle;
@@ -309,28 +304,36 @@ div.inquiring {
 	font-weight: normal;
 	font-size: 20px;
 	line-height: 30px;
-
+	background-color: white;
+	
 	margin-top: 2rem;
 	margin-right: 10px;
 	margin-left: -28px;
 	text-align: center;
-
+	
 	border: 4px solid #a9dbd1;
 	border-radius: 10px;
 	width: 100%;
 	height: 20%;
 	min-width: fit-content;
 	min-height: fit-content;
-
+	
 	padding-left: 3rem;
 	padding-right: 2rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
-
+	
 	cursor: pointer;
 	pointer-events: auto;
 	transition: all 0.3s;
 }
+
+.message :hover {
+	position: relative;
+	top: -2px;
+	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
+}
+
 
 .num_comment {
 	z-index: 1;

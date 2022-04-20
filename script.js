@@ -28,6 +28,8 @@ import {
   getDocs,
   getFirestore,
   updateDoc,
+  query,
+  where,
 } from "https://www.gstatic.com/firebasejs/9.6.11/firebase-firestore.js";
 
 const db = getFirestore();
@@ -37,8 +39,12 @@ const tagsRef = collection(db, "tags");
 const usersRef = collection(db, "users");
 
 function openForm() {
-  document.getElementById("myForm").style.visibility = "visible";
+  var tmp = document.getElementById("myForm");
+  tmp.style.visibility = "visible";
+  // document.getElementById("myForm").style.visibility = "visible";
   console.log("click");
+  // var tmp = document.querySelector(".message").innerText();
+  // console.log(tmp.innerText);
 }
 
 function closeForm() {
@@ -50,9 +56,22 @@ function closeForm() {
 document.querySelectorAll(".message").forEach((item) => {
   item.addEventListener("click", (event) => {
     //handle click
-	openForm()
+  var question = item.innerText;
+  console.log(question);
+  const q = query(questionsRef, where("question", "==", question));
+
+	openForm();
   });
 });
+
+
+if(document.getElementsByClassName('message').clicked == true)
+{
+  //  alert("button was clicked");
+  console.log("clickkkk");
+}
+
+
 
 document
   .querySelector(".popup__close-button")

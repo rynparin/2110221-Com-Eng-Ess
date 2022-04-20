@@ -56,23 +56,42 @@ const likeButton = document.querySelector('.like__btn');
 
 const addButton = document.querySelector('.add__submit__btn');
 
-async function getComments() {
+async function getComments(question, comRefs) {
 	console.log('getComments');
 
-	const comments = await getDocs(commentsRef);
+	const comments = [];
 
-	if (comments) {
-		const newComments = comments.docs.map((comment) => ({
-			docId: comment.id,
-			...comment.data(),
-		}));
-		console.log(newComments);
-		const test = await newComments[0].users_like[0].get();
+	for (let i = 0; i < comRefs.length; i++) {
+		const comment = await doc(db, `comments/${comRefs[i]}`);
+		let commentInstance = await getDoc(comment);
+		commentInstance = commentInstance.data();
+		comments.push(commentInstance);
 	}
+
+	console.log(comments);
 }
 
-console.log(usersRef);
-getComments();
+// test get comment
+const comment = await getDocs(questionsRef);
+const newComments = comment.docs.map((comment) => ({
+	docId: comment.id,
+	...comment.data(),
+}));
+console.log(newComments);
+getComments('testttt', newComments[0].ID_comments);
+
+// =======================================================
+
+async function addComment2(comment) {
+	console.log('addItem');
+
+	const ID_Likes = [];
+
+	addDoc(commentsRef, {
+		comment,
+		ID_Likes,
+	});
+}
 
 function addComment() {
 	var tag = document.createElement('div');
@@ -88,6 +107,9 @@ function addComment() {
 	tag.appendChild(button);
 	document.getElementById('comment01').appendChild(tag);
 	console.log('add');
+
+	// add to database
+	addComment2(commentText);
 }
 
 addButton.addEventListener('click', (e) => {

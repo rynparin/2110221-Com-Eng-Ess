@@ -285,12 +285,18 @@ div.inquiring {
 	min-height: fit-content;
 	margin-top: 2rem;
 	
-	cursor: pointer;
+	/* cursor: pointer;
 	pointer-events: auto;
-	transition: all 0.3s;
+	transition: all 0.3s; */
 }
 
-.number:hover {
+/* .number:hover {
+	position: relative;
+	top: -2px;
+	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
+} */
+
+.message button:hover {
 	position: relative;
 	top: -2px;
 	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
@@ -320,6 +326,10 @@ div.inquiring {
 	padding-right: 2rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
+
+	cursor: pointer;
+	pointer-events: auto;
+	transition: all 0.3s;
 }
 
 .num_comment {

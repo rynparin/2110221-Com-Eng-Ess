@@ -47,7 +47,7 @@ function closeForm() {
 
 // document.querySelectorAll(".number").addEventListener("click", openForm);
 
-document.querySelectorAll(".number").forEach((item) => {
+document.querySelectorAll(".message").forEach((item) => {
   item.addEventListener("click", (event) => {
     //handle click
 	openForm()

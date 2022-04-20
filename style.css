@@ -189,7 +189,7 @@ nav {
 
 .app {
 	/* NOTE This creates the fade in/out anumation */
-	opacity: 0;
+	opacity: 100;
 	transition: all 1s;
 }
 

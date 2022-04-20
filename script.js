@@ -50,3 +50,18 @@ document.querySelector('.open-button').addEventListener('click', openForm);
 document
 	.querySelector('.popup__close-button')
 	.addEventListener('click', closeForm);
+
+// =======================================================
+
+const likeButton = document.querySelector('.like__btn');
+
+const inputAddComment = document.querySelector('add__comment__input');
+
+likeButton.addEventListener('click', (e) => {
+	e.preventDefault();
+	console.log('click');
+	const like = document.querySelector('.like__value');
+	const likeCount = parseInt(like.textContent);
+	like.textContent = likeCount + 1;
+	console.log(likeCount);
+});

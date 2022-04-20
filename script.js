@@ -52,27 +52,51 @@ document
 	.addEventListener('click', closeForm);
 
 // =======================================================
-function addComment() {
-	var tag = document.createElement("div");
-	tag.className =  "ans";
-	const h3 = document.createElement("H3");
-	const commentText = document.getElementById("userAdd").value;
-	h3.innerHTML = commentText;
-	const button = document.createElement("button");
-	button.className = "like__btn";
-	button.innerHTML = '<img src="like.png" alt="like" class="like__img"/><p class="like__value">0</p>';
-	tag.appendChild(h3);
-	tag.appendChild(button);
-	document.getElementById("comment01").appendChild(tag);
-	console.log('add');
-}
 const likeButton = document.querySelector('.like__btn');
 
 const addButton = document.querySelector('.add__submit__btn');
 
-addButton.addEventListener('click', (e) =>{
+async function getComments() {
+	console.log('getComments');
+
+	const comments = await getDocs(commentsRef);
+
+	if (comments) {
+		const newComments = comments.docs.map((comment) => ({
+			docId: comment.id,
+			...comment.data(),
+		}));
+		console.log(newComments);
+		const test = await newComments[0].users_like[0].get();
+	}
+}
+
+console.log(usersRef);
+getComments();
+
+function addComment() {
+	var tag = document.createElement('div');
+	tag.className = 'ans';
+	const h3 = document.createElement('H3');
+	const commentText = document.getElementById('userAdd').value;
+	h3.innerHTML = commentText;
+	const button = document.createElement('button');
+	button.className = 'like__btn';
+	button.innerHTML =
+		'<img src="like.png" alt="like" class="like__img"/><p class="like__value">0</p>';
+	tag.appendChild(h3);
+	tag.appendChild(button);
+	document.getElementById('comment01').appendChild(tag);
+	console.log('add');
+}
+
+addButton.addEventListener('click', (e) => {
 	e.preventDefault();
-	addComment();
+	if (document.getElementById('userAdd').value === '') {
+		alert('Enter your comment');
+	} else {
+		addComment();
+	}
 });
 
 likeButton.addEventListener('click', (e) => {

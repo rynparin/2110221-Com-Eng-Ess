@@ -185,6 +185,12 @@ nav {
 	height: 100px;
 	background-color: #ceedce;
 	border-radius: 15px;
+	cursor: pointer;
+}
+
+.category__subject:hover{
+	background-color: #ceedce;
+	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
 }
 
 .app {
@@ -502,6 +508,7 @@ div.inquiring {
 	line-height: 15px;
 	display: flex;
 	align-items: center;
+	border-color: #ff9800;
 }
 
 .comment__answers {

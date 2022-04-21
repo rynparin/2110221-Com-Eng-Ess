@@ -35,9 +35,10 @@ const commentsRef = collection(db, 'comments');
 const questionsRef = collection(db, 'questions');
 const tagsRef = collection(db, 'tags');
 const usersRef = collection(db, 'users');
-const oldquestionRef = collection(db, 'oldquestion');
-var isLogin = false;
+
+var isLogin = false; 			// login status
 var inactiveStatus = false;
+
 var numberOfQuestion = {
 	"FOREIGN_LANGUAGES":  1,
 	"MATH":  1,
@@ -66,21 +67,24 @@ document
 	.querySelector('.popup__close-button')
 	.addEventListener('click', closeForm);
 
+
+// when the POST button is clicked, it calls this function to generate the question to the question box
 function generateQuestion() {
-	var question_text = document.getElementById("txt").value;
-	var type = document.getElementById("types").value;
-	var element = document.getElementById(type);
-	const firstname = document.getElementById("firstname").value;
-	const lastname = document.getElementById("lastname").value;
-	const studentId = document.getElementById("studentId").value;
-	if (question_text != "" && type != "CHOOSE CATEGORY") {
-		element.innerHTML += '<div class="parent"><div class="child"><div class="number">' + numberOfQuestion[type] +'</div></div><div class="child"><div class="message">' + question_text + '<div class="comments"><button type="button" class="num_comment">comments</button></div></div></div></div>';
-		numberOfQuestion[type] += 1;
-		addDoc(oldquestionRef, {
-			type,
-			question_text
+	var question = document.getElementById("txt").value;
+	var category = document.getElementById("types").value;
+	var element = document.getElementById(category);
+	if (question != "" && category != "CHOOSE CATEGORY") {
+		element.innerHTML += '<div class="parent"><div class="child"><div class="number">' + numberOfQuestion[category] +'</div></div><div class="child"><div class="message">' + question + '<div class="comments"><button type="button" class="num_comment">comments</button></div></div></div></div>';
+		numberOfQuestion[category] += 1;
+		var ID_comments = [];
+		addDoc(questionsRef, {
+			ID_comments,
+			category,
+			question
 		});
+		// After the question is posted, set each field to default value.
 		document.getElementById("txt").value = "";
+		document.getElementById("types").value = "CHOOSE CATEGORY";
 		return false;
 	}
 	alert("Please make sure that you have already typed the question and selected the category of the question.");
@@ -88,6 +92,7 @@ function generateQuestion() {
 }
 window.generateQuestion = generateQuestion;
 
+// when user is logging in, opacity = 100. Opacity = 0 otherwise.
 function changeStyle(){
     var element = document.getElementById("mainElement");
     if (isLogin) {
@@ -101,7 +106,7 @@ function changeStyle(){
 }
 window.changeStyle = changeStyle;
 
-
+// onclick function for login button (checking username, lastname and the number of digit of student ID)
 async function validate(){
 	const firstname = document.getElementById("firstname").value;
 	const lastname = document.getElementById("lastname").value;
@@ -136,8 +141,9 @@ async function validate(){
 }
 window.validate = validate;
 
+// generate old question which is posted before.
 async function generateOldQuestion() {
-	const items =  await getDocs(oldquestionRef);
+	const items =  await getDocs(questionsRef);
 	if (items) {
 		const oldquestion = items.docs.map((item) => ({
         	...item.data()
@@ -145,8 +151,8 @@ async function generateOldQuestion() {
     	console.log(oldquestion);
 
     	for (let i = 0; i < oldquestion.length; i++) {
-    		var element = document.getElementById(oldquestion[i].type);
-  			element.innerHTML += '<div class="parent"><div class="child"><div class="number">' + numberOfQuestion[oldquestion[i].type]++ +'</div></div><div class="child"><div class="message">' + oldquestion[i].question_text + '<div class="comments"><button type="button" class="num_comment">comments</button></div></div></div></div>';
+    		var element = document.getElementById(oldquestion[i].category);
+  			element.innerHTML += '<div class="parent"><div class="child"><div class="number">' + numberOfQuestion[oldquestion[i].category]++ +'</div></div><div class="child"><div class="message">' + oldquestion[i].question + '<div class="comments"><button type="button" class="num_comment">comments</button></div></div></div></div>';
 			// console.log(oldquestion[i].type);
 			// console.log(oldquestion[i].question_text);
 		}

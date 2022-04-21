@@ -52,7 +52,6 @@ document
 	.addEventListener('click', closeForm);
 
 // =======================================================
-const likeButton = document.querySelector('.like__btn');
 
 const addButton = document.querySelector('.add__submit__btn');
 
@@ -117,13 +116,22 @@ async function addComment() {
 	button.className = 'like__btn';
 
 	const commentId = await addCommentToDB(commentText, newQuestions[0].docId);
-	console.log(commentId);
 	button.innerHTML = `<img src="like.png" alt="like" class="like__img"/><p id="${commentId}">0</p>`;
-
-	console.log(button.innerHTML);
-
 	tag.appendChild(h3);
 	tag.appendChild(button);
+
+	button.addEventListener('click', async (e) => {
+		e.preventDefault();
+
+		const docId = button.childNodes[1].id;
+		console.log(docId);
+
+		const commentRef = await doc(db, `comments/${docId}`);
+		let commentInstance = await getDoc(commentRef);
+		commentInstance = commentInstance.data();
+		console.log(commentInstance);
+	});
+
 	document.getElementById('comment01').appendChild(tag);
 	console.log('add');
 }
@@ -137,11 +145,22 @@ addButton.addEventListener('click', (e) => {
 	}
 });
 
-likeButton.addEventListener('click', (e) => {
-	e.preventDefault();
-	console.log('click');
-	const like = document.querySelector('.like__value');
-	const likeCount = parseInt(like.textContent);
-	like.textContent = likeCount + 1;
-	console.log(likeCount);
+function updateLike(commentId) {
+	const like = document.getElementById(commentId);
+	const likeCount = parseInt(like.innerHTML);
+	like.innerHTML = likeCount + 1;
+}
+
+document.querySelectorAll('.like__btn').forEach(async (button) => {
+	await button.addEventListener('click', async (e) => {
+		e.preventDefault();
+
+		const docId = button.childNodes[2].id;
+		console.log(docId);
+
+		const commentRef = await doc(db, `comments/${docId}`);
+		let commentInstance = await getDoc(commentRef);
+		commentInstance = commentInstance.data();
+		console.log(commentInstance);
+	});
 });

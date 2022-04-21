@@ -86,8 +86,8 @@ async function addCommentToDB(comment, questionID) {
 	console.log('addItem');
 
 	const ID_Likes = [];
-
-	addDoc(commentsRef, {
+	let commentID;
+	await addDoc(commentsRef, {
 		comment,
 		ID_Likes,
 	})
@@ -99,13 +99,15 @@ async function addCommentToDB(comment, questionID) {
 			questionInstance.ID_comments.push(docRef.id);
 			console.log(questionInstance);
 			updateDoc(questionRef, questionInstance);
+			commentID = docRef.id;
 		})
 		.catch(function (error) {
 			console.log(error);
 		});
+	return commentID;
 }
 
-function addComment() {
+async function addComment() {
 	var tag = document.createElement('div');
 	tag.className = 'ans';
 	const h3 = document.createElement('H3');
@@ -113,14 +115,17 @@ function addComment() {
 	h3.innerHTML = commentText;
 	const button = document.createElement('button');
 	button.className = 'like__btn';
-	button.innerHTML =
-		'<img src="like.png" alt="like" class="like__img"/><p class="like__value">0</p>';
+
+	const commentId = await addCommentToDB(commentText, newQuestions[0].docId);
+	console.log(commentId);
+	button.innerHTML = `<img src="like.png" alt="like" class="like__img"/><p id="${commentId}">0</p>`;
+
+	console.log(button.innerHTML);
+
 	tag.appendChild(h3);
 	tag.appendChild(button);
 	document.getElementById('comment01').appendChild(tag);
 	console.log('add');
-
-	addCommentToDB(commentText, newQuestions[0].docId);
 }
 
 addButton.addEventListener('click', (e) => {

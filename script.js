@@ -72,17 +72,17 @@ async function getComments(question, comRefs) {
 }
 
 // test get comment
-const comment = await getDocs(questionsRef);
-const newComments = comment.docs.map((comment) => ({
-	docId: comment.id,
-	...comment.data(),
+const questions = await getDocs(questionsRef);
+const newQuestions = questions.docs.map((question) => ({
+	docId: question.id,
+	...question.data(),
 }));
-console.log(newComments);
-getComments('testttt', newComments[0].ID_comments);
+console.log(newQuestions);
+getComments('testttt', newQuestions[0].ID_comments);
 
 // =======================================================
 
-async function addComment2(comment) {
+async function addCommentToDB(comment, questionID) {
 	console.log('addItem');
 
 	const ID_Likes = [];
@@ -90,7 +90,19 @@ async function addComment2(comment) {
 	addDoc(commentsRef, {
 		comment,
 		ID_Likes,
-	});
+	})
+		.then(async function (docRef) {
+			const questionRef = await doc(db, `questions/${questionID}`);
+			let questionInstance = await getDoc(questionRef);
+			questionInstance = questionInstance.data();
+			console.log(questionInstance);
+			questionInstance.ID_comments.push(docRef.id);
+			console.log(questionInstance);
+			updateDoc(questionRef, questionInstance);
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
 }
 
 function addComment() {
@@ -108,8 +120,7 @@ function addComment() {
 	document.getElementById('comment01').appendChild(tag);
 	console.log('add');
 
-	// add to database
-	addComment2(commentText);
+	addCommentToDB(commentText, newQuestions[0].docId);
 }
 
 addButton.addEventListener('click', (e) => {

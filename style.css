@@ -196,7 +196,7 @@ nav {
 
 .app {
 	/* NOTE This creates the fade in/out anumation */
-	opacity: 100;
+	opacity: 0;
 	transition: all 1s;
 }
 
@@ -279,11 +279,9 @@ nav {
 div.inquiring {
 	width: 500px;
 	height: 500px;
-	margin: auto;
 	min-width: fit-content;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
-
 	text-align: justify;
 }
 

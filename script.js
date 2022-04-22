@@ -36,6 +36,23 @@ const questionsRef = collection(db, 'questions');
 const tagsRef = collection(db, 'tags');
 const usersRef = collection(db, 'users');
 
+function openForm() {
+	document.getElementById('myForm').style.visibility = 'visible';
+	console.log('click');
+}
+
+function closeForm() {
+	document.getElementById('myForm').style.visibility = 'hidden';
+}
+
+document.querySelector('.open-button').addEventListener('click', openForm);
+
+document
+	.querySelector('.popup__close-button')
+	.addEventListener('click', closeForm);
+
+//! Nutt
+
 var isLogin = false; // login status
 var inactiveStatus = false;
 
@@ -51,21 +68,6 @@ var numberOfQuestion = {
 	OTHERS: 1,
 	TECHNOLOGY: 1,
 };
-
-function openForm() {
-	document.getElementById('myForm').style.visibility = 'visible';
-	console.log('click');
-}
-
-function closeForm() {
-	document.getElementById('myForm').style.visibility = 'hidden';
-}
-
-document.querySelector('.open-button').addEventListener('click', openForm);
-
-document
-	.querySelector('.popup__close-button')
-	.addEventListener('click', closeForm);
 
 // when the POST button is clicked, it calls this function to generate the question to the question box
 function generateQuestion() {
@@ -123,7 +125,7 @@ async function validate() {
 		studentId.length == 10
 	) {
 		document.getElementById('welcome-msg').innerHTML =
-			'welcome to STUDYTOGETHER';
+			'Welcome To STUDYTOGETHER';
 		isLogin = true;
 		changeStyle();
 		addDoc(usersRef, {
@@ -209,35 +211,7 @@ window.smoothScroll = function (target) {
 	scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
 };
 
-window.smoothScroll = function (target) {
-	var scrollContainer = target;
-	do {
-		//find scroll container
-		scrollContainer = scrollContainer.parentNode;
-		if (!scrollContainer) return;
-		scrollContainer.scrollTop += 1;
-	} while (scrollContainer.scrollTop == 0);
-
-	var targetY = 0;
-	do {
-		//find the top of target relatively to the container
-		if (target == scrollContainer) break;
-		targetY += target.offsetTop;
-	} while ((target = target.offsetParent));
-
-	scroll = function (c, a, b, i) {
-		i++;
-		if (i > 30) return;
-		c.scrollTop = a + ((b - a) / 30) * i;
-		setTimeout(function () {
-			scroll(c, a, b, i);
-		}, 20);
-	};
-	// start scrolling
-	scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
-};
-
-// =======================================================
+//!!!! =======================================================
 
 const addButton = document.querySelector('.add__submit__btn');
 

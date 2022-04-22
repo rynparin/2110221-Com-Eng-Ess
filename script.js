@@ -145,6 +145,12 @@ addButton.addEventListener('click', (e) => {
 	}
 });
 
+function updateLike(commentId) {
+	const like = document.getElementById(commentId);
+	const likeCount = parseInt(like.innerHTML);
+	like.innerHTML = likeCount + 1;
+}
+
 document.querySelectorAll('.like__btn').forEach(async (button) => {
 	await button.addEventListener('click', async (e) => {
 		e.preventDefault();

@@ -38,6 +38,8 @@ const questionsRef = collection(db, "questions");
 const tagsRef = collection(db, "tags");
 const usersRef = collection(db, "users");
 
+
+// popup part---------------------------------------------------------------------------------------------------
 function openForm() {
   var tmp = document.getElementById("myForm");
   tmp.style.visibility = "visible";
@@ -60,18 +62,19 @@ document.querySelectorAll(".message").forEach((item) => {
   item.addEventListener("click", (event) => {
     var question__on__btn = item.innerText;
     console.log(question__on__btn);
+
     const allQuestions = questions.docs.map((question) => ({
       docId: question.id,
       ...question.data(),
     }));
+
+    //clear all comments before add new ones
     const myNode = document.getElementById("com_ans");
-    while (myNode.firstChild) {
-      console.log("fff");
-      myNode.removeChild(myNode.lastChild);
-    }
+    myNode.innerHTML = "";
 
     var check = false;
     for (let i = 0; i < allQuestions.length; i++) {
+      // find the question that user click
       if (question__on__btn == allQuestions[i].question) {
         console.log("YES");
         check = true;
@@ -79,15 +82,17 @@ document.querySelectorAll(".message").forEach((item) => {
         const text = document.getElementById("question_text");
         text.textContent = "QUESTION: " + question__on__btn;
 
+        // gets all comments in this question
         for (let j = 0; j < allQuestions[i].ID_comments.length; ++j) {
           var commentID = allQuestions[i].ID_comments[j];
           commentID = commentID.trim();
-          // console.log(commentID);
-
+          
+          // find all comment of this question
           for (let i = 0; i < allComments.length; i++) {
             if (commentID.toString() == allComments[i].docId.toString()) {
               console.log(allComments[i].comment);
-
+              
+              // add all comment to the popup box
               document.getElementById("com_ans").innerHTML +=
                 '<div class="ans" id = "ans_text"><h3>' +
                 allComments[i].comment +
@@ -97,14 +102,16 @@ document.querySelectorAll(".message").forEach((item) => {
         }
       }
     }
+    // if database does not have this question **impossible to has this case
     if (check == false) {
       console.log(2);
       const text = document.getElementById("question_text");
       text.textContent = "QUESTION: " + question__on__btn;
-      document.getElementsByClassName("comment").innerHTML = "";
-      document.getElementsByClassName("comment__answers").innerHTML = "";
-      document.getElementsByClassName("ans").innerText = "";
+
+      const myNode = document.getElementById("com_ans");
+      myNode.innerHTML = "";
     }
+
     openForm();
   });
 });
@@ -112,3 +119,4 @@ document.querySelectorAll(".message").forEach((item) => {
 document
   .querySelector(".popup__close-button")
   .addEventListener("click", closeForm);
+//----------------------------------------------------------------------------------------------------------------

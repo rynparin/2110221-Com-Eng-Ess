@@ -98,6 +98,9 @@ document.querySelectorAll(".message").forEach((item) => {
         if (question__on__btn == allQuestions[i].question){
           console.log("YES");
           
+          const text = document.getElementById("question_text");
+          text.textContent = "QUESTION: " + question__on__btn;
+          
           for (let j = 0;j < allQuestions[i].ID_comments.length;++j){
             var commentID = allQuestions[i].ID_comments[j];
             commentID = commentID.trim();

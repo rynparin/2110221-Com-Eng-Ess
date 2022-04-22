@@ -61,23 +61,7 @@ const allComments = comments.docs.map((comment) => ({
   ...comment.data(),
 }));
 
-async function getCommentbyDocId(commentID){
-  // const docRef = doc(db, "comments", "commentID");
-  // const docSnap = await getDoc(docRef);
-  // const comment =  docSnap.data();
-  // return comment.toString();
 
-  for (let i = 0; i < allComments.length; i++) {
-    // console.log(allComments[i].docId);
-    // console.log(allComments[i].docId.toString());
-    // console.log(commentID.toString());
-    if (commentID.toString() == allComments[i].docId.toString()){
-      console.log(allComments[i].comment);
-      return allComments[i].comment;
-    }
-  }
-
-}
 
 document.querySelectorAll(".message").forEach((item) => {
   item.addEventListener("click", (event) => {
@@ -112,6 +96,15 @@ document.querySelectorAll(".message").forEach((item) => {
               // console.log(commentID.toString());
               if (commentID.toString() == allComments[i].docId.toString()){
                 console.log(allComments[i].comment);
+                
+                var element = document.getElementsByClassName("comment__answers");
+                // element.innerHTML += '<div class="ans">' + allComments[i].comment+ '<button class="like__btn"><img src="like.png" alt="like" class="like__img"/>100</button></div>';
+                // element.innerHTML += "<h3>This is the text which has been inserted by JS</h3>";
+                // element.insertAdjacentHTML("afterend",
+                // "<h3>This is the text which has been inserted by JS</h3>");
+                // document.getElementById("ans__text").insertAdjacentHTML("afterend",
+                // "<h3>This is the text which has been inserted by JS</h3>");
+                document.getElementById("ans_text").insertAdjacentHTML("afterend",'<div class="ans" id = "ans_text"><h3>' + allComments[i].comment+ '</h3><button class="like__btn"><img src="like.png" alt="like" class="like__img"/>100</button></div>');
               }
             }
           }

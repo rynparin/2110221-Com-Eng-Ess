@@ -19,25 +19,32 @@
 					type="text"
 					placeholder="Firstname"
 					class="login__input login__input--name"
+					id="firstname"
+					value=""
 				/>
 				<input
 					type="text"
 					placeholder="Surname"
 					class="login__input login__input--surname"
+					id="lastname"
+					value=""
 				/>
 				<input
 					type="number"
 					placeholder="ID"
 					maxlength="10"
 					class="login__input login__input--id"
+					id="studentId"
+					value=""
 				/>
-				<button class="login__btn">&rarr;</button>
+				<button class="login__btn" type="button" onclick="validate()">&rarr;</button>
 			</form>
 		</nav>
 		<!-- Welcome message -->
 		<div class="welcome">
-			<h1>Please login before asking question !!!</h1>
+			<h1 id = "welcome-msg">Please login before asking question !!!</h1>
 		</div>
+
 		<!-- Quote -->
 		<div class="header">
 			<div class="quote">
@@ -53,6 +60,18 @@
 		<div class="category">
 			<h1 class="category__title">CATEGORIES</h1>
 			<div class="category__subjects">
+<<<<<<< HEAD
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('foreign_languages'))">FOREIGN<br />LANGUAGES</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('math'))">MATH</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('art'))">ART</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('science'))">SCIENCE</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('history'))">HISTORY</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('social_studies'))">SOCIAL <br />STUDIES</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('geography'))">GEOGRAPHY</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('p.e.'))">P.E.</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('technology'))">TECHONOLOGY</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('others'))">OTHERS</div>
+||||||| 5cbf80b
 				<div class="category__subject">FOREIGN<br />LANGUAGES</div>
 				<div class="category__subject">MATH</div>
 				<div class="category__subject">ART</div>
@@ -63,10 +82,22 @@
 				<div class="category__subject">P.E.</div>
 				<div class="category__subject">TECHONOLOGY</div>
 				<div class="category__subject">OTHERS</div>
+=======
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('foreign_languages'))">FOREIGN<br />LANGUAGES</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('MATH'))" >MATH</div>
+				<div class="category__subject" onclick="smoothScroll(document.getElementById('ART'))" >ART</div>
+				<div class="category__subject">SCIENCE</div>
+				<div class="category__subject">HISTORY</div>
+				<div class="category__subject">SOCIAL <br />STUDIES</div>
+				<div class="category__subject">GEOGRAPHY</div>
+				<div class="category__subject">P.E.</div>
+				<div class="category__subject">TECHONOLOGY</div>
+				<div class="category__subject">OTHERS</div>
+>>>>>>> e0c2ac5c6a89396fc32b764f4f554e520f01d92c
 			</div>
 		</div>
 
-		<main class="app">
+		<main class="app" id="mainElement">
 			<!-- ASK QUESTION? -->
 			<div class="group2">
 				<img src="boy.png" alt="boy" class="boy" />
@@ -75,34 +106,107 @@
 					<textarea name="" id="txt" cols="80" rows="10" placeholder=" TYPE SOMETHING..."></textarea>
 					<select name="question-type" id="types">
 						<option value="CHOOSE CATEGORY">CHOOSE CATEGORY</option>
-						<option value="FOREIGN LANGUAGES">FOREIGN LANGUAGES</option>
+						<option value="FOREIGN_LANGUAGES">FOREIGN LANGUAGES</option>
 						<option value="MATH">MATH</option>
 						<option value="ART">ART</option>
 						<option value="SCIENCE">SCIENCE</option>
 						<option value="HISTORY">HISTORY</option>
-						<option value="SOCIAL STUDIES">SOCIAL STUDIES</option>
+						<option value="SOCIAL_STUDIES">SOCIAL STUDIES</option>
 						<option value="GEOGRAPHY">GEOGRAPHY</option>
 						<option value="P.E.">P.E.</option>
 						<option value="TECHNOLOGY">TECHNOLOGY</option>
 						<option value="OTHERS">OTHERS</option>
 					</select>
-					<button>POST</button>
+					<button type="button" onclick="generateQuestion()">POST</button>
 				</div>
 			</div>
 		
 		<!-- Question in category -->
 		
 		<div class="Question_in_category">
-			<div class="FOREIGN_LANGUAGES">FOREIGN LANGUAGES</div>
+			<div class="FOREIGN_LANGUAGES" id="foreign_languages">FOREIGN LANGUAGES</div>
 			<div class="AllofQuestions">
-				<div class="inquiring">
-					<div class="parent">
+				<div class="inquiring" id = "FOREIGN_LANGUAGES">
+					<!-- each question -->
+					<!-- <div class="parent">
 						<div class="child">
 							<div class="number">1</div>
 						</div>
 						<div class="child">
 							<div class="message">
 								Take your brain to relax before starting a reading.
+<<<<<<< HEAD
+								<div class="comments">
+									<button type="button" class="num_comment">comments</button>
+								</div>
+							</div>
+						</div>
+					</div> -->
+					<!-- each question -->
+				</div>
+			</div>
+		</div>
+		<div class="Question_in_category">
+			<div class="FOREIGN_LANGUAGES" id="math">MATH</div>
+			<div class="AllofQuestions">
+				<div class="inquiring" id = "MATH">
+				</div>
+			</div>
+		</div>
+		<div class="Question_in_category">
+			<div class="FOREIGN_LANGUAGES" id="art">ART</div>
+			<div class="AllofQuestions">
+				<div class="inquiring" id = "ART">
+				</div>
+			</div>
+		</div>
+		<div class="Question_in_category">
+			<div class="FOREIGN_LANGUAGES" id="science">SCIENCE</div>
+			<div class="AllofQuestions">
+				<div class="inquiring" id = "SCIENCE">
+				</div>
+			</div>
+		</div>
+		<div class="Question_in_category">
+			<div class="FOREIGN_LANGUAGES"id="history">HISTORY</div>
+			<div class="AllofQuestions">
+				<div class="inquiring" id = "HISTORY">
+				</div>
+			</div>
+		</div>
+		<div class="Question_in_category">
+			<div class="FOREIGN_LANGUAGES" id="social_studies">SOCIAL STUDIES</div>
+			<div class="AllofQuestions">
+				<div class="inquiring" id = "SOCIAL_STUDIES">
+				</div>
+			</div>
+		</div>	
+		<div class="Question_in_category">
+			<div class="FOREIGN_LANGUAGES" id="geography">GEOGRAPHY</div>
+			<div class="AllofQuestions">
+				<div class="inquiring" id = "GEOGRAPHY">
+				</div>
+			</div>
+		</div>
+		<div class="Question_in_category">
+			<div class="FOREIGN_LANGUAGES" id="p.e.">P.E.</div>
+			<div class="AllofQuestions">
+				<div class="inquiring" id = "P.E.">
+				</div>
+			</div>
+		</div>
+		<div class="Question_in_category">
+			<div class="FOREIGN_LANGUAGES" id="technology">TECHNOLOGY</div>
+			<div class="AllofQuestions">
+				<div class="inquiring" id = "TECHNOLOGY">
+				</div>
+			</div>
+		</div>
+		<div class="Question_in_category">
+			<div class="FOREIGN_LANGUAGES" id="others">OTHERS</div>
+			<div class="AllofQuestions">
+				<div class="inquiring" id = "OTHERS">
+||||||| 5cbf80b
 								Take your brain to relax before starting a reading.
 
 								<div class="comments">
@@ -184,10 +288,57 @@
 							</div>
 						</div>
 					</div>
+=======
+								Take your brain to relax before starting a reading.
+
+								<div class="comments">
+									<div class="num_comment">20700000 comments</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="MATH" id="MATH">MATH</div>
+			<div class="AllofQuestions">
+				<div class="inquiring">
+					<div class="parent">
+						<div class="child">
+							<div class="number">1</div>
+						</div>
+						<div class="child">
+							<div class="message">
+								TEST math
+								<div class="comments">
+									<div class="num_comment">20 comments</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="ART" id="ART">ART</div>
+			<div class="AllofQuestions">
+				<div class="inquiring">
+					<div class="parent">
+						<div class="child">
+							<div class="number">1</div>
+						</div>
+						<div class="child">
+							<div class="message">
+								TEST art
+								<div class="comments">
+									<div class="num_comment">9 comments</div>
+								</div>
+							</div>
+						</div>
+					</div>
+>>>>>>> e0c2ac5c6a89396fc32b764f4f554e520f01d92c
 				</div>
 			</div>
 		</div>
-		
 			<!-- popup -->
 			<div class="popup" id="myForm">
 				<div class="pupup__background">

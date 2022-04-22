@@ -184,18 +184,14 @@ nav {
 	height: 100px;
 	background-color: #ceedce;
 	border-radius: 15px;
-<<<<<<< HEAD
 	cursor: pointer;
 }
 
-.category__subject:hover{
+.category__subject:hover {
 	background-color: #ceedce;
 	box-shadow: -6px 14px 12px 2px rgba(90, 90, 90, 0.12);
-||||||| 5cbf80b
-=======
 	border: none;
 	cursor: pointer;
->>>>>>> e0c2ac5c6a89396fc32b764f4f554e520f01d92c
 }
 
 .app {

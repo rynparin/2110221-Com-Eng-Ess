@@ -42,15 +42,13 @@ function openForm() {
   var tmp = document.getElementById("myForm");
   tmp.style.visibility = "visible";
   console.log("click");
-
 }
 
 function closeForm() {
   document.getElementById("myForm").style.visibility = "hidden";
 }
 
-
-const questions0 = await getDocs(questionsRef);
+const questions = await getDocs(questionsRef);
 
 const comments = await getDocs(commentsRef);
 const allComments = comments.docs.map((comment) => ({
@@ -62,14 +60,21 @@ document.querySelectorAll(".message").forEach((item) => {
   item.addEventListener("click", (event) => {
     var question__on__btn = item.innerText;
     console.log(question__on__btn);
-    const allQuestions = questions0.docs.map((question) => ({
+    const allQuestions = questions.docs.map((question) => ({
       docId: question.id,
       ...question.data(),
     }));
+    const myNode = document.getElementById("com_ans");
+    while (myNode.firstChild) {
+      console.log("fff");
+      myNode.removeChild(myNode.lastChild);
+    }
 
+    var check = false;
     for (let i = 0; i < allQuestions.length; i++) {
       if (question__on__btn == allQuestions[i].question) {
         console.log("YES");
+        check = true;
 
         const text = document.getElementById("question_text");
         text.textContent = "QUESTION: " + question__on__btn;
@@ -83,30 +88,22 @@ document.querySelectorAll(".message").forEach((item) => {
             if (commentID.toString() == allComments[i].docId.toString()) {
               console.log(allComments[i].comment);
 
-              document
-                .getElementById("com_ans")
-                .insertAdjacentHTML(
-                  "afterend",
-                  '<div class="ans" id = "ans_text"><h3>' +
-                    allComments[i].comment +
-                    '</h3><button class="like__btn"><img src="like.png" alt="like" class="like__img"/>100</button></div>'
-                );
+              document.getElementById("com_ans").innerHTML +=
+                '<div class="ans" id = "ans_text"><h3>' +
+                allComments[i].comment +
+                '</h3><button class="like__btn"><img src="like.png" alt="like" class="like__img"/>100</button></div>';
             }
           }
-
-
-          document.getElementsByClassName("comment").innerHTML = "";
-          document.getElementsByClassName("comment__answers").innerHTML = "";
-          document.getElementsByClassName("ans").innerText = "";
-
-          // var element = document.getElementById("com_ans");
-          // element.parentNode.removeChild(element);
-
         }
-      } else {
-        const text = document.getElementById("question_text");
-        text.textContent = "QUESTION: " + question__on__btn;
       }
+    }
+    if (check == false) {
+      console.log(2);
+      const text = document.getElementById("question_text");
+      text.textContent = "QUESTION: " + question__on__btn;
+      document.getElementsByClassName("comment").innerHTML = "";
+      document.getElementsByClassName("comment__answers").innerHTML = "";
+      document.getElementsByClassName("ans").innerText = "";
     }
     openForm();
   });

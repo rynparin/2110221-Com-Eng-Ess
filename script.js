@@ -41,17 +41,14 @@ const usersRef = collection(db, "users");
 function openForm() {
   var tmp = document.getElementById("myForm");
   tmp.style.visibility = "visible";
-  // document.getElementById("myForm").style.visibility = "visible";
   console.log("click");
-  // var tmp = document.querySelector(".message").innerText();
-  // console.log(tmp.innerText);
+
 }
 
 function closeForm() {
   document.getElementById("myForm").style.visibility = "hidden";
 }
 
-// document.querySelectorAll(".number").addEventListener("click", openForm);
 
 const questions0 = await getDocs(questionsRef);
 
@@ -61,101 +58,59 @@ const allComments = comments.docs.map((comment) => ({
   ...comment.data(),
 }));
 
-
-
 document.querySelectorAll(".message").forEach((item) => {
   item.addEventListener("click", (event) => {
-
-    //handle click
     var question__on__btn = item.innerText;
     console.log(question__on__btn);
-    // const q = query(questionsRef, where("question", "==", question));
-    // console.log(questions);
     const allQuestions = questions0.docs.map((question) => ({
       docId: question.id,
       ...question.data(),
     }));
 
-    //async function getQuestion(allquestion) {
-      for (let i = 0; i < allQuestions.length; i++) {
-        // console.log(allQuestions[i]);
-        if (question__on__btn == allQuestions[i].question){
-          console.log("YES");
-          
-          const text = document.getElementById("question_text");
-          text.textContent = "QUESTION: " + question__on__btn;
-          
-          for (let j = 0;j < allQuestions[i].ID_comments.length;++j){
-            var commentID = allQuestions[i].ID_comments[j];
-            commentID = commentID.trim();
-            // console.log(commentID);
-            
-            for (let i = 0; i < allComments.length; i++) {
-              // console.log(allComments[i].docId);
-              // console.log(allComments[i].docId.toString());
-              // console.log(commentID.toString());
-              if (commentID.toString() == allComments[i].docId.toString()){
-                console.log(allComments[i].comment);
-                
-                var element = document.getElementsByClassName("comment__answers");
-                // element.innerHTML += '<div class="ans">' + allComments[i].comment+ '<button class="like__btn"><img src="like.png" alt="like" class="like__img"/>100</button></div>';
-                // element.innerHTML += "<h3>This is the text which has been inserted by JS</h3>";
-                // element.insertAdjacentHTML("afterend",
-                // "<h3>This is the text which has been inserted by JS</h3>");
-                // document.getElementById("ans__text").insertAdjacentHTML("afterend",
-                // "<h3>This is the text which has been inserted by JS</h3>");
-                document.getElementById("ans_text").insertAdjacentHTML("afterend",'<div class="ans" id = "ans_text"><h3>' + allComments[i].comment+ '</h3><button class="like__btn"><img src="like.png" alt="like" class="like__img"/>100</button></div>');
-              }
+    for (let i = 0; i < allQuestions.length; i++) {
+      if (question__on__btn == allQuestions[i].question) {
+        console.log("YES");
+
+        const text = document.getElementById("question_text");
+        text.textContent = "QUESTION: " + question__on__btn;
+
+        for (let j = 0; j < allQuestions[i].ID_comments.length; ++j) {
+          var commentID = allQuestions[i].ID_comments[j];
+          commentID = commentID.trim();
+          // console.log(commentID);
+
+          for (let i = 0; i < allComments.length; i++) {
+            if (commentID.toString() == allComments[i].docId.toString()) {
+              console.log(allComments[i].comment);
+
+              document
+                .getElementById("com_ans")
+                .insertAdjacentHTML(
+                  "afterend",
+                  '<div class="ans" id = "ans_text"><h3>' +
+                    allComments[i].comment +
+                    '</h3><button class="like__btn"><img src="like.png" alt="like" class="like__img"/>100</button></div>'
+                );
             }
           }
 
-        }
 
+          document.getElementsByClassName("comment").innerHTML = "";
+          document.getElementsByClassName("comment__answers").innerHTML = "";
+          document.getElementsByClassName("ans").innerText = "";
+
+          // var element = document.getElementById("com_ans");
+          // element.parentNode.removeChild(element);
+
+        }
+      } else {
+        const text = document.getElementById("question_text");
+        text.textContent = "QUESTION: " + question__on__btn;
       }
-    //}
+    }
     openForm();
   });
 });
-
-
-
-async function getComments(question, comRefs) {
-  console.log("getComments");
-  // console.log(comRefs);
-
-  const comments = [];
-
-  for (let i = 0; i < comRefs.length; i++) {
-    const comment = await doc(db, `comments/${comRefs[i]}`);
-    // console.log(comment);
-    
-    let commentInstance = await getDoc(comment);
-    // console.log(commentInstance);
-
-    commentInstance = commentInstance.data();
-    // console.log(commentInstance);
-
-    comments.push(commentInstance);
-  }
-
-  console.log(comments);
-}
-
-// test get comment
-const questions = await getDocs(questionsRef);
-// console.log(questions);
-const newQuestions = questions.docs.map((question) => ({
-  docId: question.id,
-  ...question.data(),
-}));
-// console.log(newQuestions);
-getComments("asd", newQuestions[0].ID_comments);
-
-// if(document.getElementsByClassName('message').clicked == true)
-// {
-//   //  alert("button was clicked");
-//   console.log("clickkkk");
-// }
 
 document
   .querySelector(".popup__close-button")

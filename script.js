@@ -66,7 +66,7 @@ document.querySelector('.open-button').addEventListener('click', openForm);
 document
 	.querySelector('.popup__close-button')
 	.addEventListener('click', closeForm);
-<<<<<<< HEAD
+
 
 
 // when the POST button is clicked, it calls this function to generate the question to the question box
@@ -209,4 +209,113 @@ window.smoothScroll = function(target) {
     // start scrolling
     scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
 }
->>>>>>> e0c2ac5c6a89396fc32b764f4f554e520f01d92c
+
+
+// =======================================================
+
+const addButton = document.querySelector('.add__submit__btn');
+
+async function getComments(question, comRefs) {
+	console.log('getComments');
+
+	const comments = [];
+
+	for (let i = 0; i < comRefs.length; i++) {
+		const comment = await doc(db, `comments/${comRefs[i]}`);
+		let commentInstance = await getDoc(comment);
+		commentInstance = commentInstance.data();
+		comments.push(commentInstance);
+	}
+
+	console.log(comments);
+}
+
+// test get comment
+const questions = await getDocs(questionsRef);
+const newQuestions = questions.docs.map((question) => ({
+	docId: question.id,
+	...question.data(),
+}));
+console.log(newQuestions);
+getComments('testttt', newQuestions[0].ID_comments);
+
+// =======================================================
+
+async function addCommentToDB(comment, questionID) {
+	console.log('addItem');
+
+	const ID_Likes = [];
+	let commentID;
+	await addDoc(commentsRef, {
+		comment,
+		ID_Likes,
+	})
+		.then(async function (docRef) {
+			const questionRef = await doc(db, `questions/${questionID}`);
+			let questionInstance = await getDoc(questionRef);
+			questionInstance = questionInstance.data();
+			console.log(questionInstance);
+			questionInstance.ID_comments.push(docRef.id);
+			console.log(questionInstance);
+			updateDoc(questionRef, questionInstance);
+			commentID = docRef.id;
+		})
+		.catch(function (error) {
+			console.log(error);
+		});
+	return commentID;
+}
+
+async function addComment() {
+	var tag = document.createElement('div');
+	tag.className = 'ans';
+	const h3 = document.createElement('H3');
+	const commentText = document.getElementById('userAdd').value;
+	h3.innerHTML = commentText;
+	const button = document.createElement('button');
+	button.className = 'like__btn';
+
+	const commentId = await addCommentToDB(commentText, newQuestions[0].docId);
+	button.innerHTML = `<img src="like.png" alt="like" class="like__img"/><p id="${commentId}">0</p>`;
+	tag.appendChild(h3);
+	tag.appendChild(button);
+
+	button.addEventListener('click', async (e) => {
+		e.preventDefault();
+
+		const docId = button.childNodes[1].id;
+		console.log(docId);
+
+		const commentRef = await doc(db, `comments/${docId}`);
+		let commentInstance = await getDoc(commentRef);
+		commentInstance = commentInstance.data();
+		console.log(commentInstance);
+	});
+
+	document.getElementById('comment01').appendChild(tag);
+	console.log('add');
+}
+
+addButton.addEventListener('click', (e) => {
+	e.preventDefault();
+	if (document.getElementById('userAdd').value === '') {
+		alert('Enter your comment');
+	} else {
+		addComment();
+	}
+});
+
+document.querySelectorAll('.like__btn').forEach(async (button) => {
+	await button.addEventListener('click', async (e) => {
+		e.preventDefault();
+
+		const docId = button.childNodes[2].id;
+		console.log(docId);
+
+		const commentRef = await doc(db, `comments/${docId}`);
+		let commentInstance = await getDoc(commentRef);
+		commentInstance = commentInstance.data();
+		console.log(commentInstance);
+	});
+});
+

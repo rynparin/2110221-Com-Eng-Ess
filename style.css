@@ -189,7 +189,7 @@ nav {
 
 .app {
 	/* NOTE This creates the fade in/out anumation */
-	opacity: 100;
+	opacity: 0;
 	transition: all 1s;
 }
 
@@ -502,6 +502,7 @@ div.inquiring {
 	line-height: 15px;
 	display: flex;
 	align-items: center;
+	border-color: #ff9800;
 }
 
 .comment__answers {

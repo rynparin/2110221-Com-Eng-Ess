@@ -92,7 +92,7 @@ document.querySelectorAll(".message").forEach((item) => {
             if (commentID.toString() == allComments[i].docId.toString()) {
               console.log(allComments[i].comment);
               
-              // add all comment to the popup box
+              // add all comments to the popup box
               document.getElementById("com_ans").innerHTML +=
                 '<div class="ans" id = "ans_text"><h3>' +
                 allComments[i].comment +

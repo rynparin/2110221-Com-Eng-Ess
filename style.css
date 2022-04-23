@@ -244,9 +244,6 @@ nav {
 	overflow-y: auto;
 	white-space: nowrap;
 }
-.AllofQuestions::-webkit-scrollbar {
-	display: none;
-}
 
 div.inquiring {
 	width: 500px;
@@ -475,8 +472,7 @@ div.inquiring {
 	border-style: solid;
 	border-color: #a9dbd1;
 	border-radius: 10px;
-	overflow-wrap: break-word;
-	overflow-y: scroll;
+	word-break: break-all;
 }
 
 .question h3 {
@@ -521,6 +517,7 @@ div.inquiring {
 	margin: 1rem;
 	margin-bottom: 1.5rem;
 	overflow-y: scroll;
+	word-break: break-all;
 }
 
 .comment__answers::-webkit-scrollbar {

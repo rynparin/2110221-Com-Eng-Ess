@@ -1,4 +1,4 @@
-'use strict';
+// 'use strict';
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.6.11/firebase-app.js';
@@ -53,10 +53,57 @@ let numberOfQuestion = {
 	TECHNOLOGY: 1,
 };
 
-function openForm() {
+function openForm(questionID) {
 	var tmp = document.getElementById('myForm');
 	tmp.style.visibility = 'visible';
 	console.log('click');
+
+	// Add event listener to add comment and like
+
+	//add addcomment handler
+	const addButton = document.querySelector('.add__submit__btn');
+
+	addButton.addEventListener('click', function handler(e) {
+		e.preventDefault();
+
+		if (document.getElementById('userAdd').value === '') {
+			alert('Enter your comment');
+		} else {
+			addComment(questionID);
+		}
+	});
+
+	document.querySelectorAll('.like__btn').forEach(async (button) => {
+		button.addEventListener('click', async (e) => {
+			e.preventDefault();
+
+			console.log(button.childNodes);
+			const docId = button.childNodes[1].id;
+			console.log(docId);
+
+			const commentRef = await doc(db, `comments/${docId}`);
+			let commentInstance = await getDoc(commentRef);
+			commentInstance = commentInstance.data();
+			console.log(commentInstance);
+
+			if (!commentInstance.ID_Likes.includes(userId)) {
+				console.log(commentInstance.ID_Likes);
+				commentInstance.ID_Likes.push(userId);
+				updateDoc(commentRef, commentInstance);
+				button.childNodes[1].innerHTML =
+					commentInstance.ID_Likes.length;
+			} else {
+				// remove user id from ID_Likes
+				commentInstance.ID_Likes.splice(
+					commentInstance.ID_Likes.indexOf(userId),
+					1
+				);
+				updateDoc(commentRef, commentInstance);
+				button.childNodes[1].innerHTML =
+					commentInstance.ID_Likes.length;
+			}
+		});
+	});
 }
 
 function closeForm() {
@@ -179,29 +226,32 @@ async function updateUI() {
 			myNode.innerHTML = '';
 
 			var check = false;
+			let questionID;
 			for (let i = 0; i < allQuestions.length; i++) {
 				// find the question that user click
 				console.log(allQuestions[i].question);
 				if (question__on__btn == allQuestions[i].question) {
 					console.log('YES');
 					check = true;
+					questionID = allQuestions[i].docId;
 
-					//TODO question ID for add comment
-					const questionID = allQuestions[i].docId;
+					// //TODO question ID for add comment
+					// const questionID = allQuestions[i].docId;
 
-					//add addcomment handler
-					document
-						.querySelector('.add__submit__btn')
-						.addEventListener('click', (e) => {
-							e.preventDefault();
-							if (
-								document.getElementById('userAdd').value === ''
-							) {
-								alert('Enter your comment');
-							} else {
-								addComment(questionID);
-							}
-						});
+					// //add addcomment handler
+					// const addButton =
+					// 	document.querySelector('.add__submit__btn');
+
+					// addButton.addEventListener('click', function handler(e) {
+					// 	e.preventDefault();
+					// 	this.removeEventListener('click', handler);
+
+					// 	if (document.getElementById('userAdd').value === '') {
+					// 		alert('Enter your comment');
+					// 	} else {
+					// 		addComment(questionID);
+					// 	}
+					// });
 
 					const text = document.getElementById('question_text');
 					text.textContent = 'QUESTION: ' + question__on__btn;
@@ -232,54 +282,54 @@ async function updateUI() {
 						}
 					}
 
-					// add like button effect
-					document
-						.querySelectorAll('.like__btn')
-						.forEach(async (button) => {
-							await button.addEventListener(
-								'click',
-								async (e) => {
-									e.preventDefault();
+					// // add like button effect
+					// document
+					// 	.querySelectorAll('.like__btn')
+					// 	.forEach(async (button) => {
+					// 		await button.addEventListener(
+					// 			'click',
+					// 			async (e) => {
+					// 				e.preventDefault();
 
-									console.log(button.childNodes);
-									const docId = button.childNodes[1].id;
-									console.log(docId);
+					// 				console.log(button.childNodes);
+					// 				const docId = button.childNodes[1].id;
+					// 				console.log(docId);
 
-									const commentRef = await doc(
-										db,
-										`comments/${docId}`
-									);
-									let commentInstance = await getDoc(
-										commentRef
-									);
-									commentInstance = commentInstance.data();
-									console.log(commentInstance);
+					// 				const commentRef = await doc(
+					// 					db,
+					// 					`comments/${docId}`
+					// 				);
+					// 				let commentInstance = await getDoc(
+					// 					commentRef
+					// 				);
+					// 				commentInstance = commentInstance.data();
+					// 				console.log(commentInstance);
 
-									if (
-										!commentInstance.ID_Likes.includes(
-											userId
-										)
-									) {
-										console.log(commentInstance.ID_Likes);
-										commentInstance.ID_Likes.push(userId);
-										updateDoc(commentRef, commentInstance);
-										button.childNodes[1].innerHTML =
-											commentInstance.ID_Likes.length;
-									} else {
-										// remove user id from ID_Likes
-										commentInstance.ID_Likes.splice(
-											commentInstance.ID_Likes.indexOf(
-												userId
-											),
-											1
-										);
-										updateDoc(commentRef, commentInstance);
-										button.childNodes[1].innerHTML =
-											commentInstance.ID_Likes.length;
-									}
-								}
-							);
-						});
+					// 				if (
+					// 					!commentInstance.ID_Likes.includes(
+					// 						userId
+					// 					)
+					// 				) {
+					// 					console.log(commentInstance.ID_Likes);
+					// 					commentInstance.ID_Likes.push(userId);
+					// 					updateDoc(commentRef, commentInstance);
+					// 					button.childNodes[1].innerHTML =
+					// 						commentInstance.ID_Likes.length;
+					// 				} else {
+					// 					// remove user id from ID_Likes
+					// 					commentInstance.ID_Likes.splice(
+					// 						commentInstance.ID_Likes.indexOf(
+					// 							userId
+					// 						),
+					// 						1
+					// 					);
+					// 					updateDoc(commentRef, commentInstance);
+					// 					button.childNodes[1].innerHTML =
+					// 						commentInstance.ID_Likes.length;
+					// 				}
+					// 			}
+					// 		);
+					// 	});
 				}
 			}
 			// if database does not have this question **impossible to has this case
@@ -292,7 +342,7 @@ async function updateUI() {
 				myNode.innerHTML = '';
 			}
 
-			openForm();
+			openForm(questionID);
 		});
 	});
 

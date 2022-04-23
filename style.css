@@ -475,7 +475,8 @@ div.inquiring {
 	border-style: solid;
 	border-color: #a9dbd1;
 	border-radius: 10px;
-	overflow: scroll;
+	overflow-wrap: break-word;
+	overflow-y: scroll;
 }
 
 .question h3 {

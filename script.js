@@ -64,7 +64,7 @@ function closeForm() {
 }
 
 // when the POST button is clicked, it calls this function to generate the question to the question box
-function generateQuestion() {
+async function generateQuestion() {
 	var question = document.getElementById('txt').value;
 	var category = document.getElementById('types').value;
 	var element = document.getElementById(category);
@@ -85,6 +85,7 @@ function generateQuestion() {
 		// After the question is posted, set each field to default value.
 		document.getElementById('txt').value = '';
 		document.getElementById('types').value = 'CHOOSE CATEGORY';
+		await updateUI();
 		return false;
 	}
 	alert(
@@ -129,166 +130,7 @@ async function validate() {
 		});
 		userId = studentId;
 		await generateOldQuestion();
-
-		document.querySelectorAll('.message').forEach((item) => {
-			item.addEventListener('click', async (event) => {
-				const questions = await getDocs(questionsRef);
-
-				const comments = await getDocs(commentsRef);
-				const allComments = comments.docs.map((comment) => ({
-					docId: comment.id,
-					...comment.data(),
-				}));
-
-				console.log(item);
-				var question__on__btn = item.childNodes[0].nodeValue;
-				console.log(question__on__btn);
-
-				const allQuestions = questions.docs.map((question) => ({
-					docId: question.id,
-					...question.data(),
-				}));
-
-				//clear all comments before add new ones
-				const myNode = document.getElementById('com_ans');
-				myNode.innerHTML = '';
-
-				var check = false;
-				for (let i = 0; i < allQuestions.length; i++) {
-					// find the question that user click
-					console.log(allQuestions[i].question);
-					if (question__on__btn == allQuestions[i].question) {
-						console.log('YES');
-						check = true;
-
-						//TODO question ID for add comment
-						const questionID = allQuestions[i].docId;
-
-						//add addcomment handler
-						document
-							.querySelector('.add__submit__btn')
-							.addEventListener('click', (e) => {
-								e.preventDefault();
-								if (
-									document.getElementById('userAdd').value ===
-									''
-								) {
-									alert('Enter your comment');
-								} else {
-									addComment(questionID);
-								}
-							});
-
-						const text = document.getElementById('question_text');
-						text.textContent = 'QUESTION: ' + question__on__btn;
-
-						// gets all comments in this question
-						for (
-							let j = 0;
-							j < allQuestions[i].ID_comments.length;
-							++j
-						) {
-							var commentID = allQuestions[i].ID_comments[j];
-							commentID = commentID.trim();
-
-							// find all comment of this question
-							for (let i = 0; i < allComments.length; i++) {
-								if (
-									commentID.toString() ==
-									allComments[i].docId.toString()
-								) {
-									console.log(allComments[i].comment);
-
-									// add all comments to the popup box
-									document.getElementById(
-										'com_ans'
-									).innerHTML +=
-										'<div class="ans" id = "ans_text"><h3>' +
-										allComments[i].comment +
-										`</h3><button class="like__btn"><img src="like.png" alt="like" class="like__img"/><p id="${commentID}">${allComments[i].ID_Likes.length}</p></button></div>`;
-								}
-							}
-						}
-
-						// add like button effect
-						document
-							.querySelectorAll('.like__btn')
-							.forEach(async (button) => {
-								await button.addEventListener(
-									'click',
-									async (e) => {
-										e.preventDefault();
-
-										console.log(button.childNodes);
-										const docId = button.childNodes[1].id;
-										console.log(docId);
-
-										const commentRef = await doc(
-											db,
-											`comments/${docId}`
-										);
-										let commentInstance = await getDoc(
-											commentRef
-										);
-										commentInstance =
-											commentInstance.data();
-										console.log(commentInstance);
-
-										if (
-											!commentInstance.ID_Likes.includes(
-												userId
-											)
-										) {
-											console.log(
-												commentInstance.ID_Likes
-											);
-											commentInstance.ID_Likes.push(
-												userId
-											);
-											updateDoc(
-												commentRef,
-												commentInstance
-											);
-											button.childNodes[1].innerHTML =
-												commentInstance.ID_Likes.length;
-										} else {
-											// remove user id from ID_Likes
-											commentInstance.ID_Likes.splice(
-												commentInstance.ID_Likes.indexOf(
-													userId
-												),
-												1
-											);
-											updateDoc(
-												commentRef,
-												commentInstance
-											);
-											button.childNodes[1].innerHTML =
-												commentInstance.ID_Likes.length;
-										}
-									}
-								);
-							});
-					}
-				}
-				// if database does not have this question **impossible to has this case
-				if (check == false) {
-					console.log(2);
-					const text = document.getElementById('question_text');
-					text.textContent = 'QUESTION: ' + question__on__btn;
-
-					const myNode = document.getElementById('com_ans');
-					myNode.innerHTML = '';
-				}
-
-				openForm();
-			});
-		});
-
-		document
-			.querySelector('.popup__close-button')
-			.addEventListener('click', closeForm);
-
+		await updateUI();
 		return false;
 	} else if (
 		!isLogin &&
@@ -311,6 +153,153 @@ async function validate() {
 	return false;
 }
 window.validate = validate;
+
+async function updateUI() {
+	document.querySelectorAll('.message').forEach((item) => {
+		item.addEventListener('click', async (event) => {
+			const questions = await getDocs(questionsRef);
+
+			const comments = await getDocs(commentsRef);
+			const allComments = comments.docs.map((comment) => ({
+				docId: comment.id,
+				...comment.data(),
+			}));
+
+			console.log(item);
+			var question__on__btn = item.childNodes[0].nodeValue;
+			console.log(question__on__btn);
+
+			const allQuestions = questions.docs.map((question) => ({
+				docId: question.id,
+				...question.data(),
+			}));
+
+			//clear all comments before add new ones
+			const myNode = document.getElementById('com_ans');
+			myNode.innerHTML = '';
+
+			var check = false;
+			for (let i = 0; i < allQuestions.length; i++) {
+				// find the question that user click
+				console.log(allQuestions[i].question);
+				if (question__on__btn == allQuestions[i].question) {
+					console.log('YES');
+					check = true;
+
+					//TODO question ID for add comment
+					const questionID = allQuestions[i].docId;
+
+					//add addcomment handler
+					document
+						.querySelector('.add__submit__btn')
+						.addEventListener('click', (e) => {
+							e.preventDefault();
+							if (
+								document.getElementById('userAdd').value === ''
+							) {
+								alert('Enter your comment');
+							} else {
+								addComment(questionID);
+							}
+						});
+
+					const text = document.getElementById('question_text');
+					text.textContent = 'QUESTION: ' + question__on__btn;
+
+					// gets all comments in this question
+					for (
+						let j = 0;
+						j < allQuestions[i].ID_comments.length;
+						++j
+					) {
+						var commentID = allQuestions[i].ID_comments[j];
+						commentID = commentID.trim();
+
+						// find all comment of this question
+						for (let i = 0; i < allComments.length; i++) {
+							if (
+								commentID.toString() ==
+								allComments[i].docId.toString()
+							) {
+								console.log(allComments[i].comment);
+
+								// add all comments to the popup box
+								document.getElementById('com_ans').innerHTML +=
+									'<div class="ans" id = "ans_text"><h3>' +
+									allComments[i].comment +
+									`</h3><button class="like__btn"><img src="like.png" alt="like" class="like__img"/><p id="${commentID}">${allComments[i].ID_Likes.length}</p></button></div>`;
+							}
+						}
+					}
+
+					// add like button effect
+					document
+						.querySelectorAll('.like__btn')
+						.forEach(async (button) => {
+							await button.addEventListener(
+								'click',
+								async (e) => {
+									e.preventDefault();
+
+									console.log(button.childNodes);
+									const docId = button.childNodes[1].id;
+									console.log(docId);
+
+									const commentRef = await doc(
+										db,
+										`comments/${docId}`
+									);
+									let commentInstance = await getDoc(
+										commentRef
+									);
+									commentInstance = commentInstance.data();
+									console.log(commentInstance);
+
+									if (
+										!commentInstance.ID_Likes.includes(
+											userId
+										)
+									) {
+										console.log(commentInstance.ID_Likes);
+										commentInstance.ID_Likes.push(userId);
+										updateDoc(commentRef, commentInstance);
+										button.childNodes[1].innerHTML =
+											commentInstance.ID_Likes.length;
+									} else {
+										// remove user id from ID_Likes
+										commentInstance.ID_Likes.splice(
+											commentInstance.ID_Likes.indexOf(
+												userId
+											),
+											1
+										);
+										updateDoc(commentRef, commentInstance);
+										button.childNodes[1].innerHTML =
+											commentInstance.ID_Likes.length;
+									}
+								}
+							);
+						});
+				}
+			}
+			// if database does not have this question **impossible to has this case
+			if (check == false) {
+				console.log(2);
+				const text = document.getElementById('question_text');
+				text.textContent = 'QUESTION: ' + question__on__btn;
+
+				const myNode = document.getElementById('com_ans');
+				myNode.innerHTML = '';
+			}
+
+			openForm();
+		});
+	});
+
+	document
+		.querySelector('.popup__close-button')
+		.addEventListener('click', closeForm);
+}
 
 // generate old question which is posted before.
 async function generateOldQuestion() {

@@ -227,7 +227,12 @@ async function updateUI() {
 			}));
 
 			console.log(item);
-			var question__on__btn = item.childNodes[0].nodeValue;
+			//var question__on__btn = item.childNodes[0].nodeValue;
+			//console.log(question__on__btn);
+			var question__on__btn = '';
+			for (let i = 0; i < item.childNodes.length; i++) {
+				if (item.childNodes[i].nodeValue != null) question__on__btn += item.childNodes[i].nodeValue;
+			}
 			console.log(question__on__btn);
 
 			const allQuestions = questions.docs.map((question) => ({

@@ -54,13 +54,13 @@ let numberOfQuestion = {
 };
 let addButton;
 let questionID;
-function addCommentHandler(e){
+function addCommentHandler(e) {
 	e.preventDefault();
 
 	if (document.getElementById('userAdd').value === '') {
 		alert('Enter your comment');
 	} else {
-		console.log('call add comment')
+		console.log('call add comment');
 		addComment();
 	}
 }
@@ -269,7 +269,7 @@ async function updateUI() {
 						commentID = commentID.trim();
 
 						// find all comment of this question
-						console.log('find all comment of this question')
+						console.log('find all comment of this question');
 						for (let i = 0; i < allComments.length; i++) {
 							if (
 								commentID.toString() ==
@@ -278,7 +278,9 @@ async function updateUI() {
 								console.log(allComments[i].comment);
 
 								// add all comments to the popup box
-								console.log('add all comments to the popup box')
+								console.log(
+									'add all comments to the popup box'
+								);
 								document.getElementById('com_ans').innerHTML +=
 									'<div class="ans" id = "ans_text"><h3>' +
 									allComments[i].comment +
@@ -286,7 +288,6 @@ async function updateUI() {
 							}
 						}
 					}
-
 				}
 			}
 			// if database does not have this question **impossible to has this case
@@ -397,7 +398,7 @@ async function addComment() {
 	h3.innerHTML = commentText;
 	const button = document.createElement('button');
 	button.className = 'like__btn';
-	console.log('addComment()')
+	console.log('addComment()');
 	const commentId = await addCommentToDB(commentText);
 	button.innerHTML = `<img src="like.png" alt="like" class="like__img"/><p id="${commentId}">0</p>`;
 	tag.appendChild(h3);
@@ -433,5 +434,79 @@ async function addComment() {
 
 	document.getElementById('com_ans').appendChild(tag);
 	console.log('add');
-	document.getElementById('userAdd').value = "";
+	document.getElementById('userAdd').value = '';
 }
+
+// Audio Web API
+
+// instigate our audio context
+
+// for cross browser
+const AudioContext = window.AudioContext || window.webkitAudioContext;
+const audioCtx = new AudioContext();
+
+// load some sound
+const audioElement = document.querySelector('audio');
+const track = audioCtx.createMediaElementSource(audioElement);
+
+const playButton = document.querySelector('.button-controls-play');
+
+// play pause audio
+playButton.addEventListener(
+	'click',
+	function (e) {
+		e.preventDefault();
+		// check if context is in suspended state (autoplay policy)
+		if (audioCtx.state === 'suspended') {
+			audioCtx.resume();
+		}
+
+		if (this.dataset.playing === 'false') {
+			audioElement.play();
+			this.dataset.playing = 'true';
+			// if track is playing pause it
+		} else if (this.dataset.playing === 'true') {
+			audioElement.pause();
+			this.dataset.playing = 'false';
+		}
+	},
+	false
+);
+
+// if track ends
+audioElement.addEventListener(
+	'ended',
+	() => {
+		playButton.dataset.playing = 'false';
+		playButton.setAttribute('aria-checked', 'false');
+	},
+	false
+);
+
+// volume
+const gainNode = audioCtx.createGain();
+
+const volumeControl = document.querySelector('[data-action="volume"]');
+volumeControl.addEventListener(
+	'input',
+	function () {
+		gainNode.gain.value = this.value;
+	},
+	false
+);
+
+// panning
+const pannerOptions = { pan: 0 };
+const panner = new StereoPannerNode(audioCtx, pannerOptions);
+
+const pannerControl = document.querySelector('[data-action="panner"]');
+pannerControl.addEventListener(
+	'input',
+	function () {
+		panner.pan.value = this.value;
+	},
+	false
+);
+
+// connect our graph
+track.connect(gainNode).connect(panner).connect(audioCtx.destination);

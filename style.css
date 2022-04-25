@@ -73,9 +73,12 @@ nav {
 }
 
 .login__btn {
+	font-family: 'Inter';
+	font-style: italic;
+	color: #444;
 	border: none;
 	background: none;
-	font-size: 2.2rem;
+	font-size: 2rem;
 	color: inherit;
 	cursor: pointer;
 	transition: all 0.3s;
@@ -226,7 +229,7 @@ nav {
 	flex-direction: column;
 	border: 4px solid #a09acd;
 	border-radius: 15px;
-	width: 700px;
+	width: 1000px;
 	/* min-width: fit-content; */
 	height: 500px;
 	/* min-height: fit-content; */
@@ -242,7 +245,7 @@ nav {
 	margin-top: 0.5rem;
 	text-align: center;
 
-	overflow-x: auto;
+	overflow-x: hidden;
 	overflow-y: auto;
 	white-space: nowrap;
 }
@@ -268,7 +271,7 @@ div.inquiring {
 }
 
 .number {
-	z-index: 1;
+	/*z-index: 1;*/
 	position: relative;
 	border-radius: 50%;
 	width: 55px;
@@ -283,6 +286,7 @@ div.inquiring {
 	min-width: fit-content;
 	min-height: fit-content;
 	margin-top: 2rem;
+	vertical-align: middle;
 }
 
 .message {
@@ -300,15 +304,14 @@ div.inquiring {
 
 	border: 4px solid #a9dbd1;
 	border-radius: 10px;
-	width: 100%;
-	height: 20%;
-	min-width: fit-content;
-	min-height: fit-content;
+	max-width: fit-content;
+
 
 	padding-left: 3rem;
 	padding-right: 2rem;
 	padding-top: 0.5rem;
 	padding-bottom: 0.5rem;
+	text-align: left;
 }
 
 .num_comment {
@@ -400,13 +403,13 @@ div.inquiring {
 	margin-bottom: 10px;
 }
 
-#types {
+#question_types {
 	border-radius: 5px;
 	background-color: #ffe7c3;
 	color: #777777;
 	font-weight: bold;
 	font-size: 16px;
-	height: 24px;
+	height: 28px;
 }
 
 /* quesntion popup */
@@ -763,3 +766,4 @@ input[type='range']::-webkit-slider-runnable-track {
 	font-weight: 400;
 	font-size: 12px;
 }
+

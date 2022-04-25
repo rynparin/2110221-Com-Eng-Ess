@@ -37,6 +37,7 @@ const usersRef = collection(db, 'users');
 //! Nutt
 
 let isLogin = false; // login status
+let isGenerated = false;
 let userId;
 
 let numberOfQuestion = {
@@ -116,6 +117,13 @@ function closeForm() {
 // when the POST button is clicked, it calls this function to generate the question to the question box
 async function generateQuestion() {
 	var question = document.getElementById('input_queston_text').value;
+	var arrQuestion = question.split(" ");
+	let i = 14;
+	while (i < arrQuestion.length) {
+		arrQuestion.splice(i, 0, "<br>");
+		i += 14;
+	}
+	var postedQuestion = arrQuestion.join(" ");
 	var category = document.getElementById('question_types').value;
 	var element = document.getElementById(category);
 	if (question != '' && category != 'CHOOSE CATEGORY') {
@@ -123,7 +131,7 @@ async function generateQuestion() {
 			'<div class="parent"><div class="child"><div class="number">' +
 			numberOfQuestion[category] +
 			'</div></div><div class="child"><div class="message">' +
-			question +
+			postedQuestion +
 			'<div class="comments"><button type="button" class="num_comment">comments</button></div></div></div></div>';
 		numberOfQuestion[category] += 1;
 		var ID_comments = [];
@@ -150,9 +158,11 @@ function changeStyle() {
 	var element = document.getElementById('mainElement');
 	if (isLogin) {
 		element.style.opacity = '100';
+		document.getElementById('bt').innerHTML= "logout";
 		return false;
 	} else {
 		element.style.opacity = '0';
+		document.getElementById('bt').innerHTML= "login";
 		return false;
 	}
 }
@@ -310,55 +320,68 @@ async function updateUI() {
 
 // generate old question which is posted before.
 async function generateOldQuestion() {
-	const items = await getDocs(questionsRef);
-	if (items) {
-		const oldquestion = items.docs.map((item) => ({
-			...item.data(),
-		}));
-		console.log(oldquestion);
+	if (!isGenerated) {
+		const items = await getDocs(questionsRef);
+		if (items) {
+			const oldquestion = items.docs.map((item) => ({
+				...item.data(),
+			}));
+			console.log(oldquestion);
 
-		for (let i = 0; i < oldquestion.length; i++) {
-			var element = document.getElementById(oldquestion[i].category);
-			element.innerHTML +=
-				'<div class="parent"><div class="child"><div class="number">' +
-				numberOfQuestion[oldquestion[i].category]++ +
-				'</div></div><div class="child"><div class="message">' +
-				oldquestion[i].question +
-				'<div class="comments"><button type="button" class="num_comment">comments</button></div></div></div></div>';
-			// console.log(oldquestion[i].type);
-			// console.log(oldquestion[i].question_text);
+			for (let i = 0; i < oldquestion.length; i++) {
+				var element = document.getElementById(oldquestion[i].category);
+				var question = oldquestion[i].question;
+				var arrQuestion = question.split(" ");
+				let idx = 14;
+				while (idx < arrQuestion.length) {
+					arrQuestion.splice(idx, 0, "<br>");
+					idx += 14;
+				}
+				var postedQuestion = arrQuestion.join(" ");
+				element.innerHTML +=
+					'<div class="parent"><div class="child"><div class="number">' +
+					numberOfQuestion[oldquestion[i].category]++ +
+					'</div></div><div class="child"><div class="message">' +
+					postedQuestion +
+					'<div class="comments"><button type="button" class="num_comment">comments</button></div></div></div></div>';
+				// console.log(oldquestion[i].type);
+				// console.log(oldquestion[i].question_text);
+			}
 		}
+		isGenerated = true;
 	}
 }
 window.generateOldQuestion = generateOldQuestion;
 
 // scroll
 window.smoothScroll = function (target) {
-	var scrollContainer = target;
-	do {
-		//find scroll container
-		scrollContainer = scrollContainer.parentNode;
-		if (!scrollContainer) return;
-		scrollContainer.scrollTop += 1;
-	} while (scrollContainer.scrollTop == 0);
+	if (isLogin) {
+		var scrollContainer = target;
+		do {
+			//find scroll container
+			scrollContainer = scrollContainer.parentNode;
+			if (!scrollContainer) return;
+			scrollContainer.scrollTop += 1;
+		} while (scrollContainer.scrollTop == 0);
 
-	var targetY = 0;
-	do {
-		//find the top of target relatively to the container
-		if (target == scrollContainer) break;
-		targetY += target.offsetTop;
-	} while ((target = target.offsetParent));
+		var targetY = 0;
+		do {
+			//find the top of target relatively to the container
+			if (target == scrollContainer) break;
+			targetY += target.offsetTop;
+		} while ((target = target.offsetParent));
 
-	scroll = function (c, a, b, i) {
-		i++;
-		if (i > 30) return;
-		c.scrollTop = a + ((b - a) / 30) * i;
-		setTimeout(function () {
-			scroll(c, a, b, i);
-		}, 20);
-	};
-	// start scrolling
-	scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+		scroll = function (c, a, b, i) {
+			i++;
+			if (i > 30) return;
+			c.scrollTop = a + ((b - a) / 30) * i;
+			setTimeout(function () {
+				scroll(c, a, b, i);
+			}, 20);
+		};
+		// start scrolling
+		scroll(scrollContainer, scrollContainer.scrollTop, targetY, 0);
+	}
 };
 
 //! add comment and like
@@ -509,3 +532,4 @@ pannerControl.addEventListener(
 
 // connect our graph
 track.connect(gainNode).connect(panner).connect(audioCtx.destination);
+

@@ -68,6 +68,7 @@ function openForm() {
 	var tmp = document.getElementById('myForm');
 	tmp.style.visibility = 'visible';
 	console.log('click');
+	document.getElementById('userAdd').value = '';
 
 	// Add event listener to add comment and like
 
@@ -111,7 +112,6 @@ function openForm() {
 
 function closeForm() {
 	addButton.removeEventListener('click', addCommentHandler);
-	document.getElementById('userAdd').value = '';
 	document.getElementById('myForm').style.visibility = 'hidden';
 }
 

@@ -68,6 +68,7 @@ function openForm() {
 	var tmp = document.getElementById('myForm');
 	tmp.style.visibility = 'visible';
 	console.log('click');
+	document.getElementById('userAdd').value = '';
 
 	// Add event listener to add comment and like
 
@@ -117,13 +118,13 @@ function closeForm() {
 // when the POST button is clicked, it calls this function to generate the question to the question box
 async function generateQuestion() {
 	var question = document.getElementById('input_queston_text').value;
-	var arrQuestion = question.split(" ");
+	var arrQuestion = question.split(' ');
 	let i = 14;
 	while (i < arrQuestion.length) {
-		arrQuestion.splice(i, 0, "<br>");
+		arrQuestion.splice(i, 0, '<br>');
 		i += 14;
 	}
-	var postedQuestion = arrQuestion.join(" ");
+	var postedQuestion = arrQuestion.join(' ');
 	var category = document.getElementById('question_types').value;
 	var element = document.getElementById(category);
 	if (question != '' && category != 'CHOOSE CATEGORY') {
@@ -158,11 +159,11 @@ function changeStyle() {
 	var element = document.getElementById('mainElement');
 	if (isLogin) {
 		element.style.opacity = '100';
-		document.getElementById('bt').innerHTML= "logout";
+		document.getElementById('bt').innerHTML = 'logout';
 		return false;
 	} else {
 		element.style.opacity = '0';
-		document.getElementById('bt').innerHTML= "login";
+		document.getElementById('bt').innerHTML = 'login';
 		return false;
 	}
 }
@@ -226,7 +227,12 @@ async function updateUI() {
 			}));
 
 			console.log(item);
-			var question__on__btn = item.childNodes[0].nodeValue;
+			//var question__on__btn = item.childNodes[0].nodeValue;
+			//console.log(question__on__btn);
+			var question__on__btn = '';
+			for (let i = 0; i < item.childNodes.length; i++) {
+				if (item.childNodes[i].nodeValue != null) question__on__btn += item.childNodes[i].nodeValue;
+			}
 			console.log(question__on__btn);
 
 			const allQuestions = questions.docs.map((question) => ({
@@ -331,13 +337,13 @@ async function generateOldQuestion() {
 			for (let i = 0; i < oldquestion.length; i++) {
 				var element = document.getElementById(oldquestion[i].category);
 				var question = oldquestion[i].question;
-				var arrQuestion = question.split(" ");
+				var arrQuestion = question.split(' ');
 				let idx = 14;
 				while (idx < arrQuestion.length) {
-					arrQuestion.splice(idx, 0, "<br>");
+					arrQuestion.splice(idx, 0, '<br>');
 					idx += 14;
 				}
-				var postedQuestion = arrQuestion.join(" ");
+				var postedQuestion = arrQuestion.join(' ');
 				element.innerHTML +=
 					'<div class="parent"><div class="child"><div class="number">' +
 					numberOfQuestion[oldquestion[i].category]++ +
@@ -532,4 +538,3 @@ pannerControl.addEventListener(
 
 // connect our graph
 track.connect(gainNode).connect(panner).connect(audioCtx.destination);
-

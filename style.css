@@ -16,8 +16,6 @@ body {
 	/* background-color: #ceedce; */
 	background-color: #f5f5f5;
 	height: 100vh;
-
-	
 }
 
 /* navbar */
@@ -306,7 +304,6 @@ div.inquiring {
 	border-radius: 10px;
 	max-width: fit-content;
 
-
 	padding-left: 3rem;
 	padding-right: 2rem;
 	padding-top: 0.5rem;
@@ -584,12 +581,15 @@ div.inquiring {
 /* add commnet */
 .add__comment {
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
 	flex-direction: column;
-	padding: 1rem;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	padding-top: 0;
+	padding-bottom: 0;
 	margin: 2rem;
 	width: 85%;
-	height: 8rem;
+	height: 15rem;
 	border-style: solid;
 	border-color: #fabeba;
 	border-radius: 10px;
@@ -603,6 +603,7 @@ div.inquiring {
 	border-style: hidden;
 	padding-left: 1rem;
 	padding-top: 1rem;
+	margin-top: 1rem;
 }
 
 .add__submit {
@@ -622,7 +623,6 @@ div.inquiring {
 	background: #ffe7c4;
 	border-radius: 10px;
 	color: #ff8956;
-
 	border: none;
 	width: 10rem;
 	height: 3rem;
@@ -682,7 +682,7 @@ div.inquiring {
 	min-width: fit-content;
 	padding-top: 1rem;
 }
-.tape div{
+.tape div {
 	display: flex;
 	justify-content: center;
 	align-content: center;
@@ -694,7 +694,7 @@ div.inquiring {
 	font-weight: 300;
 	font-size: 15px;
 	line-height: 20px;
-	color:rgb(249, 245, 250);
+	color: rgb(249, 245, 250);
 	width: 20%;
 	min-width: fit-content;
 	background-color: rgb(197, 175, 241);
@@ -754,7 +754,7 @@ input[type='range']::-webkit-slider-runnable-track {
 	transition: all 0.3s;
 }
 
-.tape{
+.tape {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -766,4 +766,3 @@ input[type='range']::-webkit-slider-runnable-track {
 	font-weight: 400;
 	font-size: 12px;
 }
-

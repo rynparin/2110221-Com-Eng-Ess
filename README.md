@@ -23,7 +23,7 @@ Link to ours website: [StudyTogether](https://testfirebase-b134a.web.app/)
 - Like button
 - playing music
 
-## Sceenshots
+## Screenshots
 
 ![alt_text](./screenshots/home.jpg)
 ![alt_text](./screenshots/asking-question.jpg)
